@@ -1,1 +1,7 @@
-{}
+{
+  "inputDefaultPlaceholder": "Search for a service",
+  "postTask": "Post a task",
+  "login": "Log in",
+  "becomeTasker": "Become a tasker",
+  "home": "Home"
+}

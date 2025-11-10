@@ -1,1 +1,7 @@
-{}
+{
+  "inputDefaultPlaceholder": "Search for a service",
+  "postTask": "Publicar una tarea",
+  "login": "Iniciar sesión",
+  "becomeTasker": "Convertirse en tasker",
+  "home": "Inicio"
+}

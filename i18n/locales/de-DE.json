@@ -1,1 +1,7 @@
-{}
+{
+  "inputDefaultPlaceholder": "Suchbegriff eingeben",
+  "postTask": "Auftrag einstellen",
+  "login": "Anmelden",
+  "becomeTasker": "Tasker werden",
+  "home": "Startseite"
+}

@@ -10,7 +10,7 @@
         class="flex-1 px-6 py-3 text-base text-gray-700 placeholder-gray-400
              focus:outline-none focus:ring-0"
         type="text"
-        :placeholder="placeholder"
+        :placeholder="placeholderText"
         @input="onInput"
 
     >
@@ -35,20 +35,23 @@
 
 <script setup>
 import {Labels} from "~/types/Locale.ts";
-
-defineProps({
+const {t} = useI18n()
+const props = defineProps({
   placeholder: {
     type: String,
-    default: t(Labels.inputDefaltPlaceholder)
-  },
-
+    default: ''
+  }
 })
+
+const placeholderText = computed(
+    () => props.placeholder || t(Labels.inputDefaultPlaceholder)
+)
 const emit = defineEmits(['update', 'submit'])
 const query = ref('')
-
 const onInput = () => emit('update', query.value)
 const onSubmit = () => {
   if (!query.value().trim()) return
   emit('submit', query.value().trim())
+  query.value('')
 }
 </script>
