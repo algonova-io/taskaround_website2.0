@@ -4,4 +4,5 @@ export enum Labels {
     login = 'login',
     becomeTasker = 'becomeTasker',
     home = 'home',
+    bookNow = "bookNow"
 }

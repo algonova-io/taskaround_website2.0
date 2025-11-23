@@ -13,6 +13,16 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
     ],
     css: ['~/assets/css/main.css'],
+    app: {
+        head: {
+            link: [
+                {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+                {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: ''},
+                {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap'},
+                {rel: 'stylesheet', href: '/fonts/adineue-pro.css'}
+            ]
+        }
+    },
     i18n: {
         strategy: 'no_prefix',
         defaultLocale: 'de',
@@ -37,4 +47,32 @@ export default defineNuxtConfig({
             }
         ]
     },
+
+    ui: {
+        fonts: true,
+        colorMode: true,
+        theme: {
+            colors: [
+                'primary',
+                'secondary',
+                'success',
+                'info',
+                'warning',
+                'error',
+                'blue',
+                'green',
+                'celeste',
+                'deepgrey',
+                'lightgrey',
+                'surface',
+                'background',
+                'text'
+            ],
+            transitions: true,
+            defaultVariants: {
+                color: 'primary',
+                size: 'md'
+            }
+        }
+    }
 })
