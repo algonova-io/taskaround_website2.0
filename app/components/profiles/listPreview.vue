@@ -21,8 +21,9 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
       <ProfilesHeader
-          v-for="tasker in taskers"
+          v-for="(tasker, i) in taskers"
           :key="tasker.id"
+          :class="i !== 1 ? 'hidden md:flex ' : 'flex'"
           v-bind="tasker"
           @book="onBook(tasker)"
       />

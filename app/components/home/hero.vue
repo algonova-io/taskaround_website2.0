@@ -2,7 +2,7 @@
   <section class="w-full bg-primary py-16">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="flex flex-col gap-6">
-        <h1 class="text-4xl lg:text-5xl font-extrabold text-black leading-tight">
+        <h1 class="font-extrabold text-black">
           {{ t(Labels.heroFurnitureTitle1) }}<br/>
           {{ t(Labels.heroFurnitureTitle2) }}
         </h1>
@@ -12,8 +12,9 @@
         </p>
 
         <UButton
-            size="lg"
-            class="bg-white text-black shadow-md"
+            to="/karlsruhe/taskers"
+            class="bg-white hover:bg-white max-w-100 p-4 inline-block text-black font-bold border-1 rounded-sm shadow-md"
+            variant="ghost"
         >
           {{ t(Labels.heroFurnitureCtaWeekendHelper) }}
         </UButton>

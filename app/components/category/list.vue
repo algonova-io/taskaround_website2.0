@@ -1,8 +1,8 @@
 <template>
-  <section>
+  <section class="hidden md:block">
     <p class="text-lg font-bold text-xl leading-snug"> {{t(Labels.homeTopCategoriesTitle)}}</p>
     <div
-        class="flex   gap-2 snap-x snap-mandatory pb-2 mt-3 mb-3 "
+        class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1   gap-2 snap-x snap-mandatory pb-2 mt-3 mb-3 "
     >
       <category-card
           v-for="i in 3" :key="i"
@@ -12,7 +12,6 @@
           href="/Karlsruhe/umzugshilfe/"
           image="/images/category-1.png"
           class="snap-start shrink-0 min-w-[85%] sm:min-w-[45%] lg:min-w-[30%]"
-
       />    </div>
   </section>
 </template>

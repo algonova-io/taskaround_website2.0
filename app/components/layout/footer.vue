@@ -1,6 +1,6 @@
 <template>
   <footer class="w-full bg-green text-white py-16">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 md:flex items-start justify-between">
 
       <div class="flex-col flex gap-10">
 
@@ -45,7 +45,7 @@
 
       </div>
 
-      <div class="flex flex-col items-start justify-start  gap-6">
+      <div class="flex flex-col  items-start justify-start mt-4 md:mt-0   gap-6">
         <img
             src="/images/task-around-logo-white.svg"
             alt="Taskaround Logo"
