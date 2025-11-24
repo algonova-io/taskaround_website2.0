@@ -1,10 +1,9 @@
 <template>
-  <u-container>
-    <AppHeader />
-    <UContainer class="py-6">
+  <div>
+    <LayoutHeader/>
       <NuxtPage />
-    </UContainer>
-  </u-container>
+    <LayoutFooter/>
+  </div>
 </template>
 <script setup lang="ts">
 </script>

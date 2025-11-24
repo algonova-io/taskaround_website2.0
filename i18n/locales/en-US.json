@@ -1,8 +1,102 @@
 {
   "inputDefaultPlaceholder": "Search for a service",
   "postTask": "Post a task",
-  "login": "Log in",
   "becomeTasker": "Become a tasker",
-  "home": "Home",
-  "bookNow": "Book now"
+  "bookNow": "Book now",
+  "heroFurniture": {
+    "title1": "Building furniture?",
+    "title2": "Our taskers will handle it.",
+    "description": "Find reliable students for your furniture assembly in Karlsruhe – only on weekends, fast on-site and perfect for IKEA furniture, shelves, beds and everything still in the box.",
+    "ctaWeekendHelper": "Book weekend helpers now",
+    "cities": {
+      "karlsruhe": "Karlsruhe",
+      "durlach": "Durlach",
+      "ettlingen": "Ettlingen",
+      "oststadt": "Oststadt",
+      "weststadt": "Weststadt"
+    }
+  },
+  "whyWeekend": {
+    "title": "Why only on weekends? Because that works for everyone.",
+    "point1": {
+      "title": "Flexible,",
+      "text": " exactly when you have time"
+    },
+    "point2": {
+      "title": "Motivated students,",
+      "text": " who earn a bit extra on the weekend"
+    },
+    "point3": {
+      "title": "Faster furniture assembly,",
+      "text": " without juggling appointments during the week"
+    }
+  },
+  "home": {
+    "topCategoriesTitle": "Top categories on Taskaround"
+  },
+  "helpers": {
+    "title": "Our helpers",
+    "subtitle1": "All our weekend helpers are handpicked, friendly and reliably rated.",
+    "subtitle2": "Here you can find students near you:",
+    "viewAll": "See all taskers in Karlsruhe"
+  },
+  "howItWorks": {
+    "title": "In 3 steps to your helper",
+    "subtitle": "It’s simple: describe, compare, book – and your furniture assembly is done.",
+    "step1": {
+      "title": "STEP 1",
+      "text": "Briefly describe which furniture you want to assemble."
+    },
+    "step2": {
+      "title": "STEP 2",
+      "text": "Our students get in touch with a fair price."
+    },
+    "step3": {
+      "title": "STEP 3",
+      "text": "Compare profiles and book directly – done!"
+    },
+    "cta": "Let’s go!"
+  },
+  "join": {
+    "title": "Become part of Taskaround",
+    "subtitle": "earn money with your hands and your mind.",
+    "description": "Are you studying in Karlsruhe and want to earn something flexibly?\nHelp people assemble furniture, meet new people, and decide yourself when you work.\nApply now – no experience needed, just motivation!",
+    "cta": "Apply now"
+  },
+  "appDownload": {
+    "title": "Download the app",
+    "text": "With the Taskaround app you keep track of all furniture jobs – from the initial request to the fully assembled wardrobe.\nPerfect for your next weekend project.",
+    "titleTasks": "Post tasks, find helpers, done.",
+    "textTasks": "With the Taskaround app you keep track of everything – from the request to the review. Find furniture jobs, chat with taskers and organise appointments – all conveniently from your phone.",
+    "ctaLine": "Download it for free now.",
+    "googleAlt": "Taskaround app on Google Play",
+    "appleAlt": "Taskaround app on the App Store"
+  },
+  "footer": {
+    "popularServices": "Popular services",
+    "popularRegions": "Popular regions",
+    "about": "About Taskaround",
+    "services": {
+      "furnitureAssembly": "Furniture assembly in Karlsruhe",
+      "ikea": "IKEA assembly help in Karlsruhe",
+      "shelves": "Shelf & table assembly"
+    },
+    "regions": {
+      "karlsruhe": "Karlsruhe",
+      "ettlingen": "Ettlingen",
+      "durlach": "Durlach",
+      "rheinstetten": "Rheinstetten",
+      "bruchsal": "Bruchsal",
+      "pforzheim": "Pforzheim"
+    },
+    "aboutLinks": {
+      "aboutUs": "About us",
+      "contact": "Contact",
+      "partner": "Become a partner",
+      "faq": "FAQ",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use"
+    },
+    "allRights": "All rights reserved."
+  }
 }

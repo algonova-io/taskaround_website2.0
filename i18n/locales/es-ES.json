@@ -1,8 +1,102 @@
 {
   "inputDefaultPlaceholder": "Search for a service",
   "postTask": "Publicar una tarea",
-  "login": "Iniciar sesión",
   "becomeTasker": "Convertirse en tasker",
-  "home": "Inicio",
-  "bookNow": "Reservar ahora"
+  "bookNow": "Reservar ahora",
+  "heroFurniture": {
+    "title1": "¿Montar muebles?",
+    "title2": "Nuestros taskers se encargan.",
+    "description": "Encuentra estudiantes fiables para el montaje de tus muebles en Karlsruhe: solo los fines de semana, rápidos en llegar y perfectos para montar muebles de IKEA, estanterías, camas y todo lo que aún esté en la caja.",
+    "ctaWeekendHelper": "Reservar ayudantes de fin de semana",
+    "cities": {
+      "karlsruhe": "Karlsruhe",
+      "durlach": "Durlach",
+      "ettlingen": "Ettlingen",
+      "oststadt": "Oststadt",
+      "weststadt": "Weststadt"
+    }
+  },
+  "whyWeekend": {
+    "title": "¿Solo los fines de semana? Porque así le viene bien a todos.",
+    "point1": {
+      "title": "Flexible,",
+      "text": " justo cuando tú tienes tiempo"
+    },
+    "point2": {
+      "title": "Estudiantes motivados,",
+      "text": " que ganan un dinero extra el fin de semana"
+    },
+    "point3": {
+      "title": "Montaje de muebles más rápido,",
+      "text": " sin tener que encajar citas durante la semana"
+    }
+  },
+  "home": {
+    "topCategoriesTitle": "Categorías principales en Taskaround"
+  },
+  "helpers": {
+    "title": "Nuestros ayudantes",
+    "subtitle1": "Todos nuestros ayudantes de fin de semana están seleccionados a mano, son amables y están bien valorados.",
+    "subtitle2": "Aquí encuentras estudiantes cerca de ti:",
+    "viewAll": "Ver todos los taskers en Karlsruhe"
+  },
+  "howItWorks": {
+    "title": "En 3 pasos hacia tu ayudante",
+    "subtitle": "Muy fácil: describir, comparar, reservar y el montaje de tus muebles estará listo.",
+    "step1": {
+      "title": "PASO 1",
+      "text": "Describe brevemente qué muebles quieres montar."
+    },
+    "step2": {
+      "title": "PASO 2",
+      "text": "Nuestros estudiantes se ponen en contacto con un precio justo."
+    },
+    "step3": {
+      "title": "PASO 3",
+      "text": "Compara perfiles y reserva directamente: ¡listo!"
+    },
+    "cta": "¡Vamos allá!"
+  },
+  "join": {
+    "title": "Únete a Taskaround",
+    "subtitle": "gana dinero con tus manos y tu mente.",
+    "description": "¿Estudias en Karlsruhe y quieres ganar dinero de forma flexible?\nAyuda a personas con el montaje de muebles, conoce gente nueva y decide tú mismo cuándo trabajas.\n¡Solicita ahora – no necesitas experiencia, solo motivación!",
+    "cta": "Postular ahora"
+  },
+  "appDownload": {
+    "title": "Descarga la app",
+    "text": "Con la app de Taskaround controlas todos tus encargos de montaje de muebles, desde la solicitud hasta el armario completamente montado.\nPerfecta para tu próximo proyecto de fin de semana.",
+    "titleTasks": "Publica tareas, encuentra ayudantes y listo.",
+    "textTasks": "Con la app de Taskaround lo tienes todo bajo control: desde la solicitud hasta la valoración. Encuentra encargos de montaje de muebles, chatea con taskers y organiza citas, todo cómodamente desde tu móvil.",
+    "ctaLine": "Descárgala gratis ahora.",
+    "googleAlt": "Aplicación Taskaround en Google Play",
+    "appleAlt": "Aplicación Taskaround en App Store"
+  },
+  "footer": {
+    "popularServices": "Servicios populares",
+    "popularRegions": "Regiones populares",
+    "about": "Acerca de Taskaround",
+    "services": {
+      "furnitureAssembly": "Montaje de muebles en Karlsruhe",
+      "ikea": "Ayuda para montaje IKEA en Karlsruhe",
+      "shelves": "Montaje de estanterías y mesas"
+    },
+    "regions": {
+      "karlsruhe": "Karlsruhe",
+      "ettlingen": "Ettlingen",
+      "durlach": "Durlach",
+      "rheinstetten": "Rheinstetten",
+      "bruchsal": "Bruchsal",
+      "pforzheim": "Pforzheim"
+    },
+    "aboutLinks": {
+      "aboutUs": "Sobre nosotros",
+      "contact": "Contacto",
+      "partner": "Hazte socio",
+      "faq": "FAQ",
+      "privacy": "Protección de datos",
+      "terms": "Condiciones de uso"
+    },
+    "allRights": "Todos los derechos reservados."
+  }
 }

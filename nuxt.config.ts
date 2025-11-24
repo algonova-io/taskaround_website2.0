@@ -50,7 +50,7 @@ export default defineNuxtConfig({
 
     ui: {
         fonts: true,
-        colorMode: true,
+        colorMode: false,
         theme: {
             colors: [
                 'primary',

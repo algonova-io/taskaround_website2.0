@@ -1,8 +1,102 @@
 {
   "inputDefaultPlaceholder": "Suchbegriff eingeben",
   "postTask": "Auftrag einstellen",
-  "login": "Anmelden",
   "becomeTasker": "Tasker werden",
-  "home": "Startseite",
-  "bookNow": "Jetzt buchen"
+  "bookNow": "Jetzt buchen",
+  "heroFurniture": {
+    "title1": "Möbel aufbauen?",
+    "title2": "Unsere Taskers packen’s an.",
+    "description": "Finde zuverlässige Studierende für deinen Möbelaufbau in Karlsruhe – nur am Wochenende, schnell vor Ort und perfekt für IKEA-Möbel, Regale, Betten & alles, was noch im Karton steckt.",
+    "ctaWeekendHelper": "Jetzt Wochenend-Helfer buchen",
+    "cities": {
+      "karlsruhe": "Karlsruhe",
+      "durlach": "Durlach",
+      "ettlingen": "Ettlingen",
+      "oststadt": "Oststadt",
+      "weststadt": "Weststadt"
+    }
+  },
+  "whyWeekend": {
+    "title": "Warum nur am Wochenende? Weil’s dann für alle passt.",
+    "point1": {
+      "title": "Flexibel,",
+      "text": " genau dann, wenn du Zeit hast"
+    },
+    "point2": {
+      "title": "Motivierte Studierende,",
+      "text": " die sich am Wochenende etwas dazuverdienen"
+    },
+    "point3": {
+      "title": "Schneller Möbelaufbau,",
+      "text": " ohne unter der Woche Termine zu jonglieren"
+    }
+  },
+  "home": {
+    "topCategoriesTitle": "Top-Kategorien auf Taskaround"
+  },
+  "helpers": {
+    "title": "Unsere Helfer:innen",
+    "subtitle1": "Alle unsere Weekend-Helfer sind handverlesen, freundlich und zuverlässig bewertet.",
+    "subtitle2": "Hier findest du Studis aus deiner Nähe:",
+    "viewAll": "Alles Tasker in Karlsruhe ansehen"
+  },
+  "howItWorks": {
+    "title": "In 3 Schritten zu deinem Helfer",
+    "subtitle": "Ganz einfach: Beschreiben, vergleichen, buchen – und schon ist dein Möbelaufbau erledigt.",
+    "step1": {
+      "title": "SCHRITT 1",
+      "text": "Beschreibe kurz, welche Möbel du aufbauen willst."
+    },
+    "step2": {
+      "title": "SCHRITT 2",
+      "text": "Unsere Studis melden sich mit einem fairen Preis."
+    },
+    "step3": {
+      "title": "SCHRITT 3",
+      "text": "Vergleiche Profile und buche direkt – fertig!"
+    },
+    "cta": "Los geht's!"
+  },
+  "join": {
+    "title": "Werde Teil von Taskaround",
+    "subtitle": "verdiene Geld mit deinen Händen und deinem Kopf.",
+    "description": "Du studierst in Karlsruhe und möchtest flexibel etwas dazuverdienen?\nHilf Menschen beim Möbelaufbau, lerne neue Leute kennen und bestimme selbst, wann du arbeitest.\nBewirb dich jetzt – ohne Vorkenntnisse, aber mit Motivation!",
+    "cta": "Jetzt bewerben"
+  },
+  "appDownload": {
+    "title": "App herunterladen",
+    "text": "Mit der Taskaround App behältst du alle Möbelaufträge im Blick – von der Anfrage bis zum fertig aufgebauten Schrank.\nPerfekt für dein nächstes Wochenend-Projekt.",
+    "titleTasks": "Aufgaben posten, Helfer*innen finden, fertig.",
+    "textTasks": "Mit der Taskaround App behältst du alles im Blick – von der Anfrage bis zur Bewertung. Finde Möbelaufträge, chatte mit Taskers und organisiere Termine – alles bequem vom Handy aus.",
+    "ctaLine": "Jetzt kostenlos herunterladen.",
+    "googleAlt": "Taskaround App im Google Play Store",
+    "appleAlt": "Taskaround App im Apple App Store"
+  },
+  "footer": {
+    "popularServices": "Beliebte Services",
+    "popularRegions": "Beliebte Regionen",
+    "about": "Über Taskaround",
+    "services": {
+      "furnitureAssembly": "Möbelmontage in Karlsruhe",
+      "ikea": "IKEA-Aufbauhilfe in Karlsruhe",
+      "shelves": "Regale & Tische zusammenbauen"
+    },
+    "regions": {
+      "karlsruhe": "Karlsruhe",
+      "ettlingen": "Ettlingen",
+      "durlach": "Durlach",
+      "rheinstetten": "Rheinstetten",
+      "bruchsal": "Bruchsal",
+      "pforzheim": "Pforzheim"
+    },
+    "aboutLinks": {
+      "aboutUs": "Über uns",
+      "contact": "Kontakt",
+      "partner": "Partner werden",
+      "faq": "FAQ",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen"
+    },
+    "allRights": "Alle Rechte vorbehalten."
+  }
 }
