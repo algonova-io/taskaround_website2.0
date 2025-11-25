@@ -17,15 +17,7 @@
     </UContainer>
   </section>
 </template>
-<style scoped>
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>
+
 <script setup lang="ts">
   import {Labels} from "~/types/Locale";
 
