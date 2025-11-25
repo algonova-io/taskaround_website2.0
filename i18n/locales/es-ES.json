@@ -98,5 +98,40 @@
       "terms": "Condiciones de uso"
     },
     "allRights": "Todos los derechos reservados."
+  },
+  "cities": {
+    "karlsruhe": "Karlsruhe"
+  },
+  "categoryHero": {
+    "breadcrumb": {
+      "services": "Servicios",
+      "cleaning": "Limpieza"
+    }
+  },
+  "category": {
+    "furnitureAssembly": {
+      "title": "Montaje de muebles para estudiantes en {city}",
+      "description": "¿Buscas ayuda para el montaje de muebles en {city} o en ciudades cercanas como Ettlingen, Rheinstetten o Durlach? En Taskaround encontrarás estudiantes motivados que te ayudan a montar tus muebles, de forma flexible los fines de semana o después del trabajo.\nYa sea un armario de IKEA, estantería, cama o mesa, nuestros ayudantes verificados son puntuales, amables y dejan tu casa perfecta en muy poco tiempo.",
+      "discover": "Descubre ayudantes de montaje de muebles en {city}"
+    },
+    "pricing": {
+      "title": "¿Cuánto cuesta el montaje de muebles en {city}?",
+      "p1": "En Taskaround, el montaje de muebles en {city} cuesta 20 € por hora. Nuestros estudiantes formados se encargan del montaje de forma fiable y profesional, ya sea una estantería de IKEA, un armario o un escritorio.",
+      "p2": "Para muebles pequeños como estanterías, mesillas de noche o aparadores, normalmente puedes contar con un precio total de 20–40 €. Los armarios más grandes o muebles más complejos necesitan más tiempo, pero siguen siendo transparentes y previsibles gracias a la tarifa horaria fija.",
+      "p3": "Como te comunicas directamente con la persona ayudante, puedes acordar fácilmente el alcance, la cita y los deseos adicionales. Así obtienes un montaje de muebles justo, económico y flexible en {city}, sin costes ocultos."
+    },
+    "serviceTypes": {
+      "title": "¿Qué tipos de servicio de montaje de muebles ofrece Taskaround?",
+      "ikea": "Montaje de muebles IKEA y flat-pack",
+      "shelvesBeds": "Montaje de estanterías, armarios y camas",
+      "desks": "Montaje de escritorios, cómodas y aparadores",
+      "lamps": "Instalación de lámparas y colocación de cortinas",
+      "dismantling": "Desmontaje y montaje de muebles para mudanzas"
+    }
+  },
+  "helpFurniture": {
+    "title": "¿Cómo encuentro ayuda para el montaje de muebles en {city}?",
+    "body": "Muy fácil: crea un pequeño encargo en Taskaround, por ejemplo «Montar armario IKEA Pax» o «Montaje de cama en Durlach». Nuestros estudiantes verificados de la zona se postulan con propuestas de precio justas.\nPuedes comparar valoraciones, chatear directamente y fijar una cita: todo de forma sencilla, transparente y sin costes ocultos.",
+    "cta": "Enviar encargo gratis ahora"
   }
 }

@@ -1,19 +1,19 @@
 <template>
   <section class="w-full bg-surface-50 py-16">
-    <div
-        class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
+    <UContainer
+        class="  grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
     >
       <div class="flex flex-col gap-6">
         <div>
-          <h2 class="text-3xl font-extrabold text-text">
+          <h2 class="text-3xl font-extrabold text-black">
             {{ title }}
           </h2>
 
-          <p class="mt-3 text-lg text-text leading-relaxed whitespace-pre-line">
+          <p class="mt-3 text-lg text-black leading-relaxed whitespacef-pre-life">
             {{ text }}
           </p>
 
-          <p class="mt-4 text-lg text-text">
+          <p class="mt-4 text-lg text-black">
             {{ t(Labels.appDownloadCtaLine) }}
           </p>
         </div>
@@ -45,7 +45,7 @@
         class="w-[360px] lg:w-[420px] h-auto object-contain"
         />
       </div>
-    </div>
+    </UContainer>
   </section>
 </template>
 

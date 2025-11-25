@@ -1,21 +1,17 @@
-<!-- components/TaskerCard.vue -->
 <template>
   <section
-      class="p-4 rounded-2xl bg-surface flex flex-col gap-4 h-full border-none "
+      class="p-4 rounded-sm bg-surface flex flex-col gap-4 h-full border-none "
   >
-    <!-- Header -->
     <Header :avatar="avatar" :location="location" :name="name" :rating="rating" />
-    <!-- Description -->
     <p class="text-sm text-gray-800 leading-relaxed">
       {{ description }}
     </p>
 
-    <!-- CTA Button -->
     <UButton
         block
         variant="ghost"
         class="
-    mt-auto py-2 rounded-xl justify-center gap-2
+    mt-auto py-2 rounded-sm justify-center gap-2
     bg-green text-white
     focus:bg-green-600 focus:text-white
     hover:bg-green-800 hover:text-white

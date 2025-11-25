@@ -2,14 +2,12 @@
   <section>
 
     <HomeHero/>
-    <UContainer>
-      <HomeWeekenders/>
-      <CategoryList/>
-      <ProfilesListPreview/>
-    </UContainer>
+    <HomeWeekenders/>
+    <CategoryList/>
+    <ProfilesListPreview/>
     <HomeHowItWork/>
     <HomeJoin/>
-    <AppDownload />
+    <AppDownload/>
 
 
   </section>

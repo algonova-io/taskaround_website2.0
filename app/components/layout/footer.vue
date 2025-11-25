@@ -1,6 +1,6 @@
 <template>
   <footer class="w-full bg-green text-white py-16">
-    <div class="max-w-7xl mx-auto px-6 md:flex items-start justify-between">
+    <UContainer class=" md:flex items-start justify-between">
 
       <div class="flex-col flex gap-10">
 
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-    </div>
+    </UContainer>
   </footer>
 </template>
 

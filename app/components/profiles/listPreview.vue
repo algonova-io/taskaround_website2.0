@@ -1,38 +1,41 @@
 <template>
   <section class="w-full py-16">
-    <div class="flex items-center justify-between items-start">
-      <div>
-        <h2 class="text-3xl font-extrabold text-text">
-          {{ t(Labels.helpersTitle) }}
-        </h2>
+    <UContainer>
+      <div class="flex items-center mb-8 justify-between items-start">
+        <div>
+          <h2 class="text-3xl font-extrabold text-black">
+            {{ t(Labels.helpersTitle) }}
+          </h2>
 
-        <p class="text-lg text-text mt-2">
-          {{ t(Labels.helpersSubtitle1) }}<br />
-          {{ t(Labels.helpersSubtitle2) }}
-        </p>
+          <p class="text-lg text-black mt-2">
+            {{ t(Labels.helpersSubtitle1) }}<br/>
+            {{ t(Labels.helpersSubtitle2) }}
+          </p>
+        </div>
+        <NuxtLink
+            to="/karlsruhe/taskers"
+            class="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+        >
+          {{ t(Labels.helpersViewAll) }}
+          <UIcon name="i-tabler-arrow-right" class="w-5 h-5"/>
+        </NuxtLink>
       </div>
-      <NuxtLink
-          to="/karlsruhe/taskers"
-          class="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-      >
-        {{ t(Labels.helpersViewAll) }}
-        <UIcon name="i-tabler-arrow-right" class="w-5 h-5" />
-      </NuxtLink>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
-      <ProfilesHeader
-          v-for="(tasker, i) in taskers"
-          :key="tasker.id"
-          :class="i !== 1 ? 'hidden md:flex ' : 'flex'"
-          v-bind="tasker"
-          @book="onBook(tasker)"
-      />
-    </div>
+      <div class="grid mt-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
+        <ProfilesHeader
+            v-for="(tasker, i) in taskers"
+            :key="tasker.id"
+            :class="i !== 1 ? 'hidden md:flex ' : 'flex'"
+            v-bind="tasker"
+            @book="onBook(tasker)"
+        />
+      </div>
+    </UContainer>
   </section>
 </template>
 <script setup lang="ts">
-import { Labels } from '~/types/Locale'
-const { t } = useI18n()
+import {Labels} from '~/types/Locale'
+
+const {t} = useI18n()
 
 const taskers = ref([
   {

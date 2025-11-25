@@ -1,6 +1,6 @@
 <template>
   <section class="w-full  py-8 pb-12">
-    <div class=" flex flex-col gap-6">
+    <UContainer class=" flex flex-col gap-6">
       <!-- Title -->
       <p class="text-lg font-bold text-xl leading-snug">
         {{ t(Labels.whyWeekendTitle) }}
@@ -21,7 +21,7 @@
             />
           </div>
 
-          <p class="text-lg text-text leading-relaxed">
+          <p class="text-lg text-black leading-relaxed">
             <span class="font-semibold">
               {{ t(item.title) }}
             </span>
@@ -31,7 +31,7 @@
           </p>
         </li>
       </ul>
-    </div>
+    </UContainer>
   </section>
 </template>
 

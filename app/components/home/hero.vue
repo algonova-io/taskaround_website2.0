@@ -1,6 +1,6 @@
 <template>
   <section class="w-full bg-primary py-16">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <UContainer class=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="flex flex-col gap-6">
         <h1 class="font-extrabold text-black">
           {{ t(Labels.heroFurnitureTitle1) }}<br/>
@@ -37,7 +37,7 @@
             class="w-[70%] lg:w-[80%] max-w-md"
         />
       </div>
-    </div>
+    </UContainer>
   </section>
 </template>
 

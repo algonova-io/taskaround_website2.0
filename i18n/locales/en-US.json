@@ -98,5 +98,40 @@
       "terms": "Terms of use"
     },
     "allRights": "All rights reserved."
+  },
+  "cities": {
+    "karlsruhe": "Karlsruhe"
+  },
+  "categoryHero": {
+    "breadcrumb": {
+      "services": "Services",
+      "cleaning": "Cleaning"
+    }
+  },
+  "category": {
+    "furnitureAssembly": {
+      "title": "Student furniture assembly in {city}",
+      "description": "Need help assembling furniture in {city} or nearby cities like Ettlingen, Rheinstetten or Durlach? On Taskaround you’ll find motivated students who help you assemble your furniture – flexibly at weekends or after work.\nWhether IKEA wardrobe, shelf, bed or table – our vetted helpers are punctual, friendly and get your home in shape in no time.",
+      "discover": "Discover furniture assembly helpers in {city}"
+    },
+    "pricing": {
+      "title": "How much does furniture assembly cost in {city}?",
+      "p1": "On Taskaround, furniture assembly in {city} costs a flat 20 € per hour. Our trained students reliably and professionally assemble your furniture – whether IKEA shelf, wardrobe or desk.",
+      "p2": "For smaller pieces such as shelves, nightstands or sideboards you can usually expect a total price of 20–40 €. Larger wardrobes or more complex furniture require more time but remain transparent and predictable thanks to the fixed hourly rate.",
+      "p3": "Because you communicate directly with your helper, you can easily agree on scope, time and special requests. This way you get fair, affordable and flexible furniture assembly in {city} with no hidden costs."
+    },
+    "serviceTypes": {
+      "title": "What types of furniture assembly service does Taskaround offer?",
+      "ikea": "IKEA and flat-pack furniture assembly",
+      "shelvesBeds": "Assembling shelves, wardrobes and beds",
+      "desks": "Setting up desks, dressers and sideboards",
+      "lamps": "Installing lamps and hanging curtains",
+      "dismantling": "Pre-move dismantling and reassembly"
+    }
+  },
+  "helpFurniture": {
+    "title": "How do I find help for furniture assembly in {city}?",
+    "body": "It’s simple: create a short task on Taskaround – for example “Assemble IKEA Pax wardrobe” or “Bed assembly in Durlach”. Our vetted students from the area apply with fair price proposals.\nYou can compare reviews, communicate directly in the chat and arrange an appointment – uncomplicated, transparent and with no hidden costs.",
+    "cta": "Send your task for free now"
   }
 }

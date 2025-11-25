@@ -98,5 +98,40 @@
       "terms": "Nutzungsbedingungen"
     },
     "allRights": "Alle Rechte vorbehalten."
+  },
+  "cities": {
+    "karlsruhe": "Karlsruhe"
+  },
+  "categoryHero": {
+    "breadcrumb": {
+      "services": "Services",
+      "cleaning": "Reinigung"
+    }
+  },
+  "category": {
+    "furnitureAssembly": {
+      "title": "Studentische Möbelmontage in {city}",
+      "description": "Suchst du Hilfe beim Möbelaufbau in {city} oder den umliegenden Städten wie Ettlingen, Rheinstetten oder Durlach? Bei Taskaround findest du motivierte Studierende, die dir beim Aufbau deiner Möbel helfen – flexibel am Wochenende oder nach Feierabend.\nOb IKEA-Schrank, Regal, Bett oder Tisch – unsere geprüften Helfer:innen sind pünktlich, freundlich und bringen dein Zuhause im Handumdrehen auf Vordermann.",
+      "discover": "Entdecke Möbelmontage-Helfer:innen in {city}"
+    },
+    "pricing": {
+      "title": "Was kostet Möbelmontage in {city}?",
+      "p1": "Bei Taskaround kostet die Möbelmontage in {city} einheitlich 20 € pro Stunde. Unsere geschulten Studierenden übernehmen den Möbelaufbau zuverlässig und professionell – egal ob IKEA-Regal, Kleiderschrank oder Schreibtisch.",
+      "p2": "Für den Aufbau kleinerer Möbelstücke wie Regale, Nachttische oder Sideboards kannst du meist mit 20–40 € Gesamtpreis rechnen. Größere Schränke oder komplexere Möbel benötigen entsprechend mehr Zeit, bleiben aber dank des festen Stundenpreises transparent und planbar.",
+      "p3": "Da du direkt mit den Helfer:innen kommunizierst, kannst du Umfang, Termin und Zusatzwünsche unkompliziert abstimmen. So erhältst du eine faire, günstige und flexible Möbelmontage in {city} ohne versteckte Kosten."
+    },
+    "serviceTypes": {
+      "title": "Welche Arten von Möbelmontageservice bietet Taskaround an?",
+      "ikea": "IKEA- und Flachpackmöbelaufbau",
+      "shelvesBeds": "Regale, Schränke und Betten montieren",
+      "desks": "Schreibtische, Kommoden und Sideboards aufbauen",
+      "lamps": "Lampen und Vorhänge anbringen",
+      "dismantling": "Umzugsnahe Demontage & Wiederaufbau"
+    }
+  },
+  "helpFurniture": {
+    "title": "Wie finde ich Hilfe für Möbelmontage in {city}?",
+    "body": "Ganz einfach: Erstelle einen kurzen Auftrag bei Taskaround – z. B. „IKEA Pax Schrank aufbauen“ oder „Bettmontage in Durlach“. Unsere geprüften Studierenden aus der Umgebung bewerben sich mit fairen Preisvorschlägen.\nDu kannst Bewertungen vergleichen, direkt im Chat kommunizieren und einen Termin vereinbaren – unkompliziert, transparent und ohne versteckte Kosten.",
+    "cta": "Jetzt Auftrag kostenlos senden"
   }
 }

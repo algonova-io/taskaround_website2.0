@@ -1,14 +1,25 @@
 <template>
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <ProfilesCard
-        v-for="tasker in taskers"
-        :key="tasker.id"
-        v-bind="tasker"
-        @book="onBook(tasker)"
-    />
-  </section>
+  <UContainer class="mb-10" >
+    <h2 class="py-10 title-medium text-black">
+      {{ t(Labels.categoryFurnitureAssemblyDiscover, { city }) }}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ProfilesCard
+          v-for="tasker in taskers"
+          :key="tasker.id"
+          v-bind="tasker"
+          @book="onBook(tasker)"
+      />
+    </div>
+
+
+  </UContainer>
 </template>
 <script setup lang="ts">
+import { Labels } from '~/types/Locale'
+const { t } = useI18n()
+const route = useRoute()
+const city = computed(() => route.params.city || 'karlsruhe')
 const taskers = ref([
   {
     id: 1,

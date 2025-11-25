@@ -1,11 +1,11 @@
 <template>
   <section class="w-full bg-surface-50 py-16">
-    <div class="max-w-5xl mx-auto px-6 flex flex-col items-center gap-10 text-center">
+    <UContainer class="  flex flex-col items-center gap-10 text-center">
       <div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-text">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-black">
           {{ t(Labels.howItWorksTitle) }}
         </h2>
-        <p class="mt-3 text-base md:text-lg text-text">
+        <p class="mt-3 text-base md:text-lg text-black">
           {{ t(Labels.howItWorksSubtitle) }}
         </p>
       </div>
@@ -23,10 +23,10 @@
           />
 
           <div>
-            <p class="text-sm font-extrabold tracking-wide text-text">
+            <p class="text-sm font-extrabold tracking-wide text-black">
               {{ t(step.title) }}
             </p>
-            <p class="mt-1 text-base text-text">
+            <p class="mt-1 text-base text-black">
               {{ t(step.text) }}
             </p>
           </div>
@@ -36,12 +36,12 @@
       <UButton
           size="lg"
           variant="ghost"
-          class="mt-2 px-8 py-3 rounded-full border border-text text-text bg-background-50
-               hover:bg-background-50 hover:text-text active:bg-background-100"
+          class="mt-2 px-8 py-3 rounded-full border border-text text-black bg-background-50
+               hover:bg-background-50 hover:text-black active:bg-background-100"
       >
         {{ t(Labels.howItWorksCta) }}
       </UButton>
-    </div>
+    </UContainer>
   </section>
 </template>
 
