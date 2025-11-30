@@ -2,7 +2,6 @@
   "inputDefaultPlaceholder": "Suchbegriff eingeben",
   "postTask": "Auftrag einstellen",
   "becomeTasker": "Tasker werden",
-  "bookNow": "Jetzt buchen",
   "heroFurniture": {
     "title1": "Möbel aufbauen?",
     "title2": "Unsere Taskers packen’s an.",
@@ -133,5 +132,22 @@
     "title": "Wie finde ich Hilfe für Möbelmontage in {city}?",
     "body": "Ganz einfach: Erstelle einen kurzen Auftrag bei Taskaround – z. B. „IKEA Pax Schrank aufbauen“ oder „Bettmontage in Durlach“. Unsere geprüften Studierenden aus der Umgebung bewerben sich mit fairen Preisvorschlägen.\nDu kannst Bewertungen vergleichen, direkt im Chat kommunizieren und einen Termin vereinbaren – unkompliziert, transparent und ohne versteckte Kosten.",
     "cta": "Jetzt Auftrag kostenlos senden"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "furnitureAssembly": "Möbelmontage",
+    "taskers": "Taskers"
+  },
+  "common": {
+    "bookNow": "Jetzt buchen"
+  },
+  "tasker": {
+    "about": {
+      "title": "Über mich"
+    },
+    "reviews": {
+      "title": "Das sagen meine Kund:innen",
+      "ratedOn": "Bewertet am {date}"
+    }
   }
 }

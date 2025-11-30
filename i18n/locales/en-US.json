@@ -2,7 +2,6 @@
   "inputDefaultPlaceholder": "Search for a service",
   "postTask": "Post a task",
   "becomeTasker": "Become a tasker",
-  "bookNow": "Book now",
   "heroFurniture": {
     "title1": "Building furniture?",
     "title2": "Our taskers will handle it.",
@@ -133,5 +132,22 @@
     "title": "How do I find help for furniture assembly in {city}?",
     "body": "It’s simple: create a short task on Taskaround – for example “Assemble IKEA Pax wardrobe” or “Bed assembly in Durlach”. Our vetted students from the area apply with fair price proposals.\nYou can compare reviews, communicate directly in the chat and arrange an appointment – uncomplicated, transparent and with no hidden costs.",
     "cta": "Send your task for free now"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "furnitureAssembly": "Furniture assembly",
+    "taskers": "Taskers"
+  },
+  "common": {
+    "bookNow": "Book now"
+  },
+  "tasker": {
+    "about": {
+      "title": "About me"
+    },
+    "reviews": {
+      "title": "What my customers say",
+      "ratedOn": "Rated on {date}"
+    }
   }
 }

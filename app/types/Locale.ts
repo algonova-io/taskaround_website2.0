@@ -2,7 +2,6 @@ export enum Labels {
     inputDefaultPlaceholder = 'inputDefaultPlaceholder',
     postTask = 'postTask',
     becomeTasker = 'becomeTasker',
-    bookNow = "bookNow",
     heroFurnitureTitle1 = 'heroFurniture.title1',
     heroFurnitureTitle2 = 'heroFurniture.title2',
     heroFurnitureDescription = 'heroFurniture.description',
@@ -82,4 +81,11 @@ export enum Labels {
     categoryServiceTypesDesks = 'category.serviceTypes.desks',
     categoryServiceTypesLamps = 'category.serviceTypes.lamps',
     categoryServiceTypesDismantling = 'category.serviceTypes.dismantling',
+    breadcrumbHome = 'breadcrumb.home',
+    breadcrumbFurnitureAssembly = 'breadcrumb.furnitureAssembly',
+    breadcrumbTaskers = 'breadcrumb.taskers',
+    bookNow = 'common.bookNow',
+    taskerAboutTitle = 'tasker.about.title',
+    taskerReviewListTitle = 'tasker.reviews.title',
+    taskerReviewRatedOn = 'tasker.reviews.ratedOn'
 }

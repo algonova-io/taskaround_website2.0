@@ -2,7 +2,6 @@
   "inputDefaultPlaceholder": "Search for a service",
   "postTask": "Publicar una tarea",
   "becomeTasker": "Convertirse en tasker",
-  "bookNow": "Reservar ahora",
   "heroFurniture": {
     "title1": "¿Montar muebles?",
     "title2": "Nuestros taskers se encargan.",
@@ -133,5 +132,22 @@
     "title": "¿Cómo encuentro ayuda para el montaje de muebles en {city}?",
     "body": "Muy fácil: crea un pequeño encargo en Taskaround, por ejemplo «Montar armario IKEA Pax» o «Montaje de cama en Durlach». Nuestros estudiantes verificados de la zona se postulan con propuestas de precio justas.\nPuedes comparar valoraciones, chatear directamente y fijar una cita: todo de forma sencilla, transparente y sin costes ocultos.",
     "cta": "Enviar encargo gratis ahora"
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "furnitureAssembly": "Montaje de muebles",
+    "taskers": "Taskers"
+  },
+  "common": {
+    "bookNow": "Reservar ahora"
+  },
+  "tasker": {
+    "about": {
+      "title": "Sobre mí"
+    },
+    "reviews": {
+      "title": "Lo que dicen mis clientes",
+      "ratedOn": "Valorado el {date}"
+    }
   }
 }
