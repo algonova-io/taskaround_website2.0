@@ -63,6 +63,7 @@ export default defineNuxtConfig({
                 'error',
                 'blue',
                 'green',
+                'black',
                 'celeste',
                 'deepgrey',
                 'lightgrey',

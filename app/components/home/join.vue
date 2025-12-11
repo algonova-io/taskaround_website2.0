@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { Labels } from '~/types/Locale'
+import { Labels } from '~/models/Locale'
 
 const { t } = useI18n()
 </script>

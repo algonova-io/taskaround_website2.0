@@ -1,3 +1,3 @@
 <template>
-  <p>Hi there</p>
+  <section/>
 </template>

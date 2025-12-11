@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import {Labels} from "~/types/Locale";
+import {Labels} from "~/models/Locale";
 import Header from "~/components/profiles/header.vue";
 
 const props = defineProps<{

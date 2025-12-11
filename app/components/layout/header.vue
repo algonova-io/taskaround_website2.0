@@ -29,13 +29,13 @@
 </template>
 
 <script setup lang="ts">
-import {Labels} from "~/types/Locale";
+import {Labels} from "~/models/Locale";
 import type {NavigationMenuItem} from "#ui/components/NavigationMenu.vue";
 
 const {t} = useI18n()
 const route = useRoute()
 const items = computed<NavigationMenuItem[]>(() => [
-  {label: t(Labels.postTask), to: '/pro/me/task', active: route.path.startsWith('/pro/me/task')},
-  {label: t(Labels.becomeTasker), to: '/pro/me/signup', active: route.path.startsWith('/pro/me/signup')},
+  {label: t(Labels.postTask), to: '/new-task', active: route.path.includes('/new-task')},
+  {label: t(Labels.becomeTasker), to: '/become-tasker', active: route.path.includes('/become-tasker')},
 ])
 </script>

@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import { Labels } from '~/types/Locale'
-import type {TaskerReview} from "~/types/Tasker";
+import { Labels } from '~/models/Locale'
+import type {TaskerReview} from "~/models/Tasker";
 
 
 defineProps<{

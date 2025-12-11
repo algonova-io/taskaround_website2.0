@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { Labels } from '~/types/Locale'
+import { Labels } from '~/models/Locale'
 
 const { t } = useI18n()
 

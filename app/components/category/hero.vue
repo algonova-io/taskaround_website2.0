@@ -26,7 +26,7 @@
 import { computed } from 'vue'
 import { useRoute } from '#imports'
 import { useI18n } from 'vue-i18n'
-import { Labels } from '~/types/Locale'
+import { Labels } from '~/models/Locale'
 
 const props = defineProps<{
   breadcrumbCategoryKey: Labels

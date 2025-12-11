@@ -12,7 +12,8 @@ export default defineAppConfig({
             green: 'green',
             celeste: 'celeste',
             deepGrey: 'deepGrey',
-            lightGrey: 'lightGrey'
+            lightGrey: 'lightGrey',
+            black: 'black',
         }
     }
 })

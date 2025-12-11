@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import {Labels} from "~/types/Locale.ts";
+import {Labels} from "~/models/Locale.ts";
 const {t} = useI18n()
 const props = defineProps({
   placeholder: {
