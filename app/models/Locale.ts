@@ -129,4 +129,43 @@ export enum Labels {
     newTaskButtonSend = 'newTask.button.send',
     toastSuccessTitle = 'toast.success.title',
     toastSuccessDescription = 'toast.success.description',
+    becomeTaskerStep2Title = 'becomeTasker.step2.title',
+
+    becomeTaskerFieldFirstName = 'becomeTasker.field.firstName',
+    becomeTaskerPlaceholderFirstName = 'becomeTasker.placeholder.firstName',
+
+    becomeTaskerFieldLastName = 'becomeTasker.field.lastName',
+    becomeTaskerPlaceholderLastName = 'becomeTasker.placeholder.lastName',
+
+    becomeTaskerFieldEmail = 'becomeTasker.field.email',
+    becomeTaskerPlaceholderEmail = 'becomeTasker.placeholder.email',
+
+    becomeTaskerFieldPhone = 'becomeTasker.field.phone',
+    becomeTaskerPlaceholderPhone = 'becomeTasker.placeholder.phone',
+
+    becomeTaskerFieldCity = 'becomeTasker.field.city',
+    becomeTaskerPlaceholderCity = 'becomeTasker.placeholder.city',
+    becomeTaskerStep3Title = 'becomeTasker.step3.title',
+
+    becomeTaskerOptionHigh = 'becomeTasker.option.high',
+    becomeTaskerOptionMedium = 'becomeTasker.option.medium',
+    becomeTaskerOptionLow = 'becomeTasker.option.low',
+    becomeTaskerStep4Title = 'becomeTasker.step4.title',
+    becomeTaskerPlaceholderMotivation = 'becomeTasker.placeholder.motivation',
+
+    becomeTaskerStep4Subtitle = 'becomeTasker.step4.subtitle',
+    becomeTaskerOptionCalm = 'becomeTasker.option.calm',
+    becomeTaskerOptionAsk = 'becomeTasker.option.ask',
+    becomeTaskerOptionTeam = 'becomeTasker.option.team',
+    becomeTaskerStep5Title = 'becomeTasker.step5.title',
+    becomeTaskerOptionTools = 'becomeTasker.option.tools',
+    becomeTaskerOptionCar = 'becomeTasker.option.car',
+    becomeTaskerOptionPublicTransport = 'becomeTasker.option.publicTransport',
+    becomeTaskerOptionNone = 'becomeTasker.option.none',
+
+    becomeTaskerStep5Subtitle = 'becomeTasker.step5.subtitle',
+    becomeTaskerPlaceholderAdditionalInfo = 'becomeTasker.placeholder.additionalInfo',
+    becomeTaskerStep6Title = 'becomeTasker.step6.title',
+    becomeTaskerStep6Body = 'becomeTasker.step6.body',
+    becomeTaskerButtonSend = 'becomeTasker.button.send',
 }
