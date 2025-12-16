@@ -6,6 +6,13 @@ export interface TaskerReview {
     text: string
 }
 
+export interface Tasker {
+    id: string | number
+    name: string
+    avatar: string
+    location: string
+}
+
 export interface PartnerFormData {
     firstName: string
     lastName: string

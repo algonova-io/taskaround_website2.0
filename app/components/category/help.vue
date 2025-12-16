@@ -14,7 +14,7 @@
 
       <!-- CTA -->
       <NuxtLink
-          to="/auftrag-erstellen"
+          to="/new-task"
           class="mt-4 inline-flex items-center gap-2 text-black underline underline-offset-4 hover:text-blue-600"
       >
         <UIcon name="i-tabler-circle-arrow-right-filled" class="w-5 h-5" />

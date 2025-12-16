@@ -36,6 +36,7 @@
       <UButton
           size="lg"
           variant="ghost"
+          :to="{ path: '/new-task'}"
           class="mt-2 px-8 py-3 rounded-full border border-text text-black bg-background-50
                hover:bg-background-50 hover:text-black active:bg-background-100"
       >

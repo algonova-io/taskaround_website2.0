@@ -1,48 +1,50 @@
 <template>
-  <section class="flex gap-4">
+  <section class="flex gap-4 items-center">
     <UAvatar
         :src="avatar"
-        size="lg"
-        class="rounded-full object-cover w-[100px] h-[100px]"
+        :size="small ? 'md' : 'lg'"
+        class="rounded-full object-cover"
+        :class="small ? 'w-12 h-12' : 'w-[100px] h-[100px]'"
     />
 
-    <div class="flex-1 min-w-0 flex flex-col justify-center gap-2">
+    <div class="flex-1 min-w-0 flex flex-col justify-center" :class="small ? 'gap-1' : 'gap-2'">
       <div>
-        <p class="text-lg font-semibold text-black truncate">
+        <p class="font-semibold text-black truncate" :class="small ? 'text-base' : 'text-lg'">
           {{ name }}
         </p>
-        <p class="text-sm text-black">
+        <p class="text-black" :class="small ? 'text-xs' : 'text-sm'">
           {{ location }}
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-          <span class="text-base text-black font-medium">
-            {{ ratingLabel }}
-          </span>
+        <span class="text-black font-medium" :class="small ? 'text-sm' : 'text-base'">
+          {{ ratingLabel }}
+        </span>
         <div class="flex gap-1">
           <UIcon
               v-for="i in 5"
               :key="i"
               name="i-heroicons-star-20-solid"
-              class="w-5 h-5 text-primary"
+              class="text-primary"
+              :class="small ? 'w-4 h-4' : 'w-5 h-5'"
           />
         </div>
       </div>
     </div>
   </section>
-
 </template>
+
 <script setup lang="ts">
-import {computed} from "vue";
+import { computed } from "vue";
 
 const props = defineProps<{
   name: string
   location: string
   rating: number
   avatar: string
+  small?: boolean // New optional prop
 }>()
 
 const ratingLabel = computed(() => props.rating.toString().replace('.', ','))
-
-</script>
+</script>s

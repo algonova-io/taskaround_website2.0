@@ -1,6 +1,7 @@
 <template>
   <section class="w-full py-16">
     <UContainer>
+
       <div class="flex items-center mb-8 justify-between items-start">
         <div>
           <h2 class="text-3xl font-extrabold text-black">
@@ -13,30 +14,41 @@
           </p>
         </div>
         <NuxtLink
-            to="/karlsruhe/taskers"
+            to="/taskers"
             class="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
         >
           {{ t(Labels.helpersViewAll) }}
           <UIcon name="i-tabler-arrow-right" class="w-5 h-5"/>
         </NuxtLink>
       </div>
-      <div class="grid mt-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-4">
-        <ProfilesHeader
-            v-for="(tasker, i) in taskers"
-            :key="tasker.id"
-            :class="i !== 1 ? 'hidden md:flex ' : 'flex'"
-            v-bind="tasker"
-            @book="onBook(tasker)"
-        />
-      </div>
+
+      <UCarousel
+          v-slot="{ item }"
+          :items="taskers"
+          :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3 snap-start' }"
+          class="rounded-lg overflow-hidden"
+          arrows
+      >
+        <div class="p-4 w-full">
+          <ProfilesHeader
+              v-bind="item"
+              class="h-full"
+              @book="onBook(item)"
+          />
+        </div>
+      </UCarousel>
+
     </UContainer>
   </section>
 </template>
+
 <script setup lang="ts">
-import {Labels} from '~/models/Locale'
+import { Labels } from '~/models/Locale'
+import type {Tasker} from "~/models/Tasker";
 
-const {t} = useI18n()
+const { t } = useI18n()
 
+// Expanded Mock Data
 const taskers = ref([
   {
     id: 1,
@@ -65,9 +77,36 @@ const taskers = ref([
     avatar: "/images/category-1.png",
     buttonText: "Jetzt buchen"
   },
+  {
+    id: 4,
+    name: "Max Weber",
+    location: "Frankfurt",
+    rating: 4.7,
+    description: "Expert mover and heavy lifter. Can help with relocations and furniture transport.",
+    avatar: "/images/category-1.png",
+    buttonText: "Jetzt buchen"
+  },
+  {
+    id: 5,
+    name: "Julia Fischer",
+    location: "Stuttgart",
+    rating: 4.9,
+    description: "Detail-oriented cleaner and organizer. Loves making spaces shine.",
+    avatar: "/images/category-1.png",
+    buttonText: "Jetzt buchen"
+  },
+  {
+    id: 6,
+    name: "Tim Wagner",
+    location: "Köln",
+    rating: 4.6,
+    description: "Tech-savvy helper for smart home setups, TV mounting, and WiFi configuration.",
+    avatar: "/images/category-1.png",
+    buttonText: "Jetzt buchen"
+  }
 ])
 
-function onBook(tasker: any) {
-  console.log(tasker)
+function onBook(tasker: Tasker) {
+  console.log('Booking tasker:', tasker.name)
 }
 </script>

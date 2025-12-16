@@ -1,6 +1,6 @@
 <template>
   <section
-      class="p-4 rounded-sm bg-surface flex flex-col gap-4 h-full border-none "
+      class="p-4 rounded-sm bg-surface flex flex-col gap-4 h-full border-none"
   >
     <Header :avatar="avatar" :location="location" :name="name" :rating="rating" />
     <p class="text-sm text-gray-800 leading-relaxed">
@@ -11,13 +11,13 @@
         block
         variant="ghost"
         class="
-    mt-auto py-2 rounded-sm justify-center gap-2
-    bg-green text-white
-    focus:bg-green-600 focus:text-white
-    hover:bg-green-800 hover:text-white
-    active:bg-green-800
-  "
-        @click="$emit('book')"
+          mt-auto py-2 rounded-sm justify-center gap-2
+          bg-green text-white
+          focus:bg-green-600 focus:text-white
+          hover:bg-green-800 hover:text-white
+          active:bg-green-800
+        "
+        :to="{ path: '/new-task', query: { taskerId: id } }"
     >
       <span class="text-lg font-semibold">
         {{ buttonLabel }}
@@ -32,10 +32,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import {Labels} from "~/models/Locale";
+import { Labels } from "~/models/Locale";
 import Header from "~/components/profiles/header.vue";
 
 const props = defineProps<{
+  id: number | string // <--- ADDED ID HERE
   name: string
   location: string
   rating: number
@@ -44,8 +45,7 @@ const props = defineProps<{
   buttonText?: string
 }>()
 
-defineEmits(['book'])
-const {t} = useI18n()
+// Removed defineEmits(['book']) as navigation is now handled by the link
+const { t } = useI18n()
 const buttonLabel = computed(() => props.buttonText ?? t(Labels.bookNow))
 </script>
-

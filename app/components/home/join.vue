@@ -25,7 +25,7 @@
           </p>
 
           <NuxtLink
-              to="/apply"
+              to="/become-tasker"
               class="flex items-center gap-3 text-black underline underline-offset-4 hover:text-blue-600"
           >
             <UIcon name="i-tabler-circle-arrow-right-filled" class="w-6 h-6" />
