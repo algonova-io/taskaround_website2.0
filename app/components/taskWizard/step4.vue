@@ -12,10 +12,9 @@
       </UButton>
     </div>
 
-    <h2 class="text-2xl font-bold mb-2">
+    <h2 class="text-2xl font-bold mb-6">
       {{ t(Labels.newTaskStep4Title) }}
     </h2>
-
 
     <div class="flex flex-col gap-6 text-lg">
 
@@ -23,7 +22,7 @@
         <h4 class="font-bold mb-2">{{ t(Labels.newTaskSummarySectionFurniture) }}</h4>
         <div class="flex flex-col gap-1 text-gray-700">
           <p>
-            <span class="font-medium">{{ val.what }}</span>
+            <span class="font-medium text-black">{{ val.what }}</span>
           </p>
           <p v-if="val.brand">
             {{ t(Labels.newTaskFieldBrand) }}: {{ val.brand }}
@@ -69,8 +68,8 @@
       <div class="mt-6 w-full flex justify-start">
         <UButton
             color="green"
-            class="px-8 py-3 rounded-[18px] text-base font-medium"
-            @click="$emit('send')"
+            class="px-8 py-3 mb-10 rounded-[18px] text-base font-medium"
+            @click="$emit('sendApplication')"
         >
           {{ t(Labels.newTaskButtonSend) }}
         </UButton>
@@ -83,12 +82,13 @@
 <script setup lang="ts">
 import { Labels } from '~/models/Locale'
 import type { NewTask } from '~/models/Tasks'
- defineProps<{
+
+defineProps<{
   val: NewTask
 }>()
 
 defineEmits<{
-  (e: 'send'): void
+  (e: 'sendApplication'): void
   (e: 'back'): void
 }>()
 

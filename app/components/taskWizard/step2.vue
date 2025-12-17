@@ -23,24 +23,26 @@
           {{ t(Labels.newTaskFieldLocation) }}
         </label>
         <div class="relative">
-          <UInput
+          <UInputMenu
               id="location"
-              name="location"
               v-model="payload.location"
+              v-model:search-term="searchTerm"
+              :items="suggestions"
+              :loading="isLoading"
+              value-key="description"
               :placeholder="t(Labels.newTaskPlaceholderLocation)"
               icon="i-heroicons-map-pin"
-              class="w-full  rounded-[18px] p-4 text-lg"
+              class="w-full"
+              size="xl"
+              trailing-icon="i-heroicons-chevron-down"
           >
-            <template #trailing>
-              <UButton
-                  color="black"
-                  variant="solid"
-                  icon="i-heroicons-arrow-right"
-                  class="rounded-full w-8 h-8 flex items-center justify-center mr-1"
-                  @click="useCurrentLocation"
-              />
+            <template #item="{ item }">
+              <div class="flex flex-col gap-0.5 text-left w-full">
+                <span class="text-sm font-medium truncate">{{ item.main_text }}</span>
+                <span class="text-xs text-gray-500 truncate">{{ item.secondary_text }}</span>
+              </div>
             </template>
-          </UInput>
+          </UInputMenu>
         </div>
       </div>
 
@@ -54,14 +56,16 @@
               v-model="payload.date"
               type="text"
               placeholder="So. 19.11"
-              class="w-1/2  rounded-[18px] p-4 text-lg"
+              class="w-1/2"
+              size="xl"
           />
           <UInput
               name="time"
               v-model="payload.time"
               type="text"
               placeholder="12 - 13"
-              class="w-1/2  rounded-[18px] p-4 text-lg"
+              class="w-1/2"
+              size="xl"
           />
         </div>
       </div>
@@ -76,7 +80,8 @@
             v-model="payload.notes"
             :placeholder="t(Labels.newTaskPlaceholderNotes)"
             :rows="4"
-            class="w-full rounded-[18px] p-4 text-lg"
+            class="w-full"
+            size="xl"
         />
       </div>
 
@@ -96,43 +101,61 @@
 
 <script setup lang="ts">
 import { Labels } from '~/models/Locale'
-import type { NewTaskStep2,NewTask } from '~/models/Tasks'
+import type { NewTaskStep2, NewTask } from '~/models/Tasks'
+import { usePlacesAutocomplete } from '~/composables/usePlacesAutocomplete'
+import { reactive, computed, ref, watch, onMounted } from 'vue'
+
 const props = defineProps<{
   val: NewTask
 }>()
-/**
- * Emits:
- * - next (payload: form data)
- * - back (void)
- */
+
 const emit = defineEmits<{
-  (e: 'next', payload: Record<string, any>): void
+  (e: 'next', payload: Partial<NewTaskStep2>): void
   (e: 'back'): void
 }>()
 
 const { t } = useI18n()
+const { suggestions, isLoading, search, initPlaces } = usePlacesAutocomplete()
 
 const payload = reactive<NewTaskStep2>({
   location: props.val.location ?? '',
-  date: props.val.date,
-  time: props.val.time,
-  notes: props.val.notes
+  date: props.val.date ?? '',
+  time: props.val.time ?? '',
+  notes: props.val.notes ?? ''
 })
 
-function useCurrentLocation() {
-  // Logic to fetch location would go here
-  console.log('Fetching current location...')
-}
-
 const isValid = computed(() => {
-  return payload.location?.trim().length > 0 &&
-      payload.date?.trim().length > 0 &&
-      payload.time?.trim().length > 0
+  return (
+      (payload.location?.trim().length ?? 0) > 0 &&
+      (payload.date?.trim().length ?? 0) > 0 &&
+      (payload.time?.trim().length ?? 0) > 0
+  )
 })
 
 function onNext() {
   if (!isValid.value) return
-  emit('next', payload)
+  emit('next', { ...payload })
 }
 
+const searchTerm = ref('')
+let debounceTimer: ReturnType<typeof setTimeout> | null = null
+
+onMounted(() => {
+  initPlaces()
+})
+
+watch(searchTerm, (newQuery) => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+
+  if (payload.location && newQuery === payload.location) return
+
+  if (!newQuery || newQuery.length < 2) {
+    suggestions.value = []
+    return
+  }
+
+  debounceTimer = setTimeout(() => {
+    search(newQuery, 'address')
+  }, 400)
+})
 </script>

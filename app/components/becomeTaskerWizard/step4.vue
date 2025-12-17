@@ -108,18 +108,16 @@
 <script setup lang="ts">
 import { Labels } from '~/models/Locale'
 import { reactive, computed } from 'vue'
+import type {PartnerApplication, PartnerStep4} from "~/models/Tasker";
 
-interface PartnerFormData {
-  motivation: string
-  problemSolving: string
-}
+
 
 const props = defineProps<{
-  val: PartnerFormData
+  val: PartnerApplication
 }>()
 
 const emit = defineEmits<{
-  (e: 'next', payload: Partial<PartnerFormData>): void
+  (e: 'next', payload: Partial<PartnerStep4>): void
   (e: 'back'): void
 }>()
 

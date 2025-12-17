@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
-
+    runtimeConfig: {
+        public: {
+            googleMapsKey: ''
+        }
+    },
     modules: [
         '@nuxt/content',
         '@nuxt/eslint',
@@ -28,6 +32,10 @@ export default defineNuxtConfig({
     i18n: {
         strategy: 'no_prefix',
         defaultLocale: 'de',
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieCrossOrigin: true
+        },
         locales: [
             {
                 code: 'de',
@@ -44,8 +52,26 @@ export default defineNuxtConfig({
             {
                 code: 'es',
                 iso: 'es-ES',
-                name: 'Spanish',
+                name: 'Español',
                 file: 'es-ES.json'
+            },
+            {
+                code: 'it',
+                iso: 'it-IT',
+                name: 'Italiano',
+                file: 'it-IT.json'
+            },
+            {
+                code: 'ru',
+                iso: 'ru-RU',
+                name: 'Русский',
+                file: 'ru-RU.json'
+            },
+            {
+                code: 'uk',
+                iso: 'uk-UA',
+                name: 'Українська',
+                file: 'uk-UA.json'
             }
         ]
     },

@@ -13,12 +13,22 @@ export interface Tasker {
     location: string
 }
 
-export interface PartnerFormData {
+export interface PartnerStep2 {
     firstName: string
     lastName: string
     email: string
     phone: string
     city: string
+}
+
+export interface PartnerStep4 {
+    motivation: string
+    problemSolving: string
+}
+
+export  interface PartnerStep5 {
+    resources: string[]
+    additionalInfo: string
 }
 
 export interface PartnerApplication {

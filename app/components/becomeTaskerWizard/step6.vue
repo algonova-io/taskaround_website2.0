@@ -26,7 +26,7 @@
       <div class="mt-4 w-full flex justify-start">
         <UButton
             color="green"
-            class="rounded-[18px] py-3 px-8 text-base font-medium"
+            class="rounded-[18px] py-3 mb-10 px-8 text-base font-medium"
             @click="$emit('sendApplication')"
         >
           {{ t(Labels.becomeTaskerButtonSend) }}

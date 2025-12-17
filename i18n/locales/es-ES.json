@@ -117,7 +117,7 @@
   "newTask.field.name": "Por favor, introduce tu nombre",
   "newTask.placeholder.name": "Ej. Max Schmidt",
   "newTask.field.email": "Tu dirección de correo",
-  "newTask.placeholder.email": "Ej. max@email.com",
+  "newTask.placeholder.email": "Ej. max{'@'}email.com",
   "newTask.field.phone": "Número de teléfono",
   "newTask.placeholder.phone": "Ej. 0123 456789",
   "common.date": "Fecha",

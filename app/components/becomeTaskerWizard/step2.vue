@@ -3,7 +3,7 @@
     <div class="mb-4">
       <UButton
           variant="ghost"
-          color="black"
+          color="blue"
           class="p-0 hover:bg-transparent"
           icon="i-heroicons-arrow-left"
           @click="$emit('back')"
@@ -16,7 +16,7 @@
       {{ t(Labels.becomeTaskerStep2Title) }}
     </h2>
 
-    <form @submit.prevent="onNext" class="flex flex-col gap-6">
+    <form @submit.prevent.stop="onNext" class="flex flex-col gap-6">
 
       <div class="flex flex-col md:flex-row gap-6">
         <div class="w-full md:w-1/2">
@@ -25,24 +25,23 @@
           </label>
           <UInput
               id="firstName"
-              name="tasker_firstname"
               v-model="form.firstName"
               :placeholder="t(Labels.becomeTaskerPlaceholderFirstName)"
-              class="w-full rounded-[18px] py-4 text-lg"
+              class="w-full"
+              size="xl"
               autocomplete="off"
           />
         </div>
-
         <div class="w-full md:w-1/2">
           <label for="lastName" class="block mb-2 font-semibold">
             {{ t(Labels.becomeTaskerFieldLastName) }}
           </label>
           <UInput
               id="lastName"
-              name="tasker_lastname"
               v-model="form.lastName"
               :placeholder="t(Labels.becomeTaskerPlaceholderLastName)"
-              class="w-full rounded-[18px] py-4  text-lg"
+              class="w-full"
+              size="xl"
               autocomplete="off"
           />
         </div>
@@ -55,26 +54,25 @@
           </label>
           <UInput
               id="email"
-              name="tasker_email"
               type="email"
               v-model="form.email"
               :placeholder="t(Labels.becomeTaskerPlaceholderEmail)"
-              class="w-full rounded-[18px] py-4  text-lg"
+              class="w-full"
+              size="xl"
               autocomplete="off"
           />
         </div>
-
         <div class="w-full md:w-1/2">
           <label for="phone" class="block mb-2 font-semibold">
             {{ t(Labels.becomeTaskerFieldPhone) }}
           </label>
           <UInput
               id="phone"
-              name="tasker_phone"
               type="tel"
               v-model="form.phone"
               :placeholder="t(Labels.becomeTaskerPlaceholderPhone)"
-              class="w-full rounded-[18px] py-4  text-lg"
+              class="w-full"
+              size="xl"
               autocomplete="off"
           />
         </div>
@@ -85,25 +83,26 @@
           {{ t(Labels.becomeTaskerFieldCity) }}
         </label>
         <div class="relative">
-          <UInput
+          <UInputMenu
               id="city"
-              name="tasker_city"
               v-model="form.city"
+              v-model:search-term="searchTerm"
+              :items="suggestions"
+              :loading="isLoading"
+              value-key="description"
               :placeholder="t(Labels.becomeTaskerPlaceholderCity)"
               icon="i-heroicons-map-pin"
-              class="w-full rounded-[18px] py-4  text-lg"
-              autocomplete="off"
+              class="w-full"
+              size="xl"
+              trailing-icon="i-heroicons-chevron-down"
           >
-            <template #trailing>
-              <UButton
-                  color="black"
-                  variant="solid"
-                  icon="i-heroicons-arrow-right"
-                  class="rounded-full w-8 h-8 flex items-center justify-center mr-1"
-                  @click="onNext"
-              />
+            <template #item="{ item }">
+              <div class="flex flex-col gap-0.5 text-left w-full">
+                <span class="text-sm font-medium truncate">{{ item.main_text }}</span>
+                <span class="text-xs text-gray-500 truncate">{{ item.secondary_text }}</span>
+              </div>
             </template>
-          </UInput>
+          </UInputMenu>
         </div>
       </div>
 
@@ -113,7 +112,6 @@
             color="blue"
             class="px-8 py-3 rounded-[18px] text-base font-medium"
             :disabled="!isValid"
-            :class="{ 'opacity-50 cursor-not-allowed': !isValid }"
         >
           {{ t(Labels.next) }}
         </UButton>
@@ -125,23 +123,20 @@
 
 <script setup lang="ts">
 import { Labels } from '~/models/Locale'
-import { reactive, computed } from 'vue'
-import type { PartnerFormData } from "~/models/Tasker";
+import { reactive, computed, ref, watch, onMounted } from 'vue'
+import type {PartnerApplication, PartnerStep2} from "~/models/Tasker"
 
-
-const props = defineProps<{
-  val: PartnerFormData
-}>()
-
+const props = defineProps<{ val: PartnerApplication }>()
 const emit = defineEmits<{
-  (e: 'next', payload: Partial<PartnerFormData>): void
+  (e: 'next', payload: Partial<PartnerStep2>): void
   (e: 'back'): void
 }>()
 
 const { t } = useI18n()
 
-// Initialize form
-const form = reactive<PartnerFormData>({
+const { suggestions, isLoading, search, initPlaces } = usePlacesAutocomplete()
+
+const form = reactive<PartnerStep2>({
   firstName: props.val.firstName ?? '',
   lastName: props.val.lastName ?? '',
   email: props.val.email ?? '',
@@ -149,11 +144,9 @@ const form = reactive<PartnerFormData>({
   city: props.val.city ?? ''
 })
 
-// Validation Regex
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,}$/
 
-// Computed Validation
 const isValid = computed(() => {
   return (
       form.firstName.trim().length > 0 &&
@@ -166,15 +159,28 @@ const isValid = computed(() => {
 
 function onNext() {
   if (!isValid.value) return
+  emit('next', { ...form })
+}
 
-  const payload = {
-    firstName: form.firstName.trim(),
-    lastName: form.lastName.trim(),
-    email: form.email.trim(),
-    phone: form.phone.trim(),
-    city: form.city.trim()
+const searchTerm = ref('')
+let debounceTimer: ReturnType<typeof setTimeout> | null = null
+
+onMounted(() => {
+  initPlaces()
+})
+
+watch(searchTerm, (newQuery) => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+
+  if (form.city && newQuery === form.city) return
+
+  if (!newQuery || newQuery.length < 2) {
+    suggestions.value = []
+    return
   }
 
-  emit('next', payload)
-}
+  debounceTimer = setTimeout(() => {
+    search(newQuery, 'city')
+  }, 400)
+})
 </script>

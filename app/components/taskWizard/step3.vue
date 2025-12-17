@@ -26,7 +26,9 @@
             id="name"
             v-model="payload.name"
             :placeholder="t(Labels.newTaskPlaceholderName)"
-            class="w-full  rounded-[18px] p-4 text-lg"
+            class="w-full"
+            size="xl"
+            autocomplete="name"
         />
       </div>
 
@@ -40,7 +42,9 @@
               type="email"
               v-model="payload.email"
               :placeholder="t(Labels.newTaskPlaceholderEmail)"
-              class="w-full  rounded-[18px] p-4 text-lg"
+              class="w-full"
+              size="xl"
+              autocomplete="email"
           />
         </div>
 
@@ -54,7 +58,9 @@
               name="phone"
               v-model="payload.phone"
               :placeholder="t(Labels.newTaskPlaceholderPhone)"
-              class="w-full rounded-[18px] p-4 text-lg"
+              class="w-full"
+              size="xl"
+              autocomplete="tel"
           />
         </div>
       </div>
@@ -64,6 +70,7 @@
             type="submit"
             color="blue"
             class="px-8 py-3 rounded-[18px] text-base font-medium"
+            :disabled="!isValid"
         >
           {{ t(Labels.next) }}
         </UButton>
@@ -75,18 +82,21 @@
 
 <script setup lang="ts">
 import { Labels } from '~/models/Locale'
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import type { NewTaskStep3, NewTask } from '~/models/Tasks'
+
 const props = defineProps<{
   val: NewTask
 }>()
+
 const emit = defineEmits<{
-  (e: 'next', payload: Record<string, any>): void
+  (e: 'next', payload: NewTaskStep3): void
   (e: 'back'): void
 }>()
 
 const { t } = useI18n()
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 const payload = reactive<NewTaskStep3>({
   name: props.val.name ?? '',
   email: props.val.email ?? '',
@@ -94,17 +104,15 @@ const payload = reactive<NewTaskStep3>({
 })
 
 const isValid = computed(() => {
-  const isNameValid = payload.name?.trim().length > 0
+  const isNameValid = (payload.name?.trim().length ?? 0) > 0
   const isEmailValid = emailRegex.test(payload.email)
-  const isPhoneValid = payload.phone?.trim().length > 0
+  const isPhoneValid = (payload.phone?.trim().length ?? 0) > 0
 
   return isNameValid && isEmailValid && isPhoneValid
 })
 
 function onNext() {
   if (!isValid.value) return
-  emit('next', payload)
+  emit('next', { ...payload })
 }
-
-
 </script>
