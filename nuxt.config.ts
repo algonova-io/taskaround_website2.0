@@ -4,7 +4,11 @@ export default defineNuxtConfig({
     devtools: {enabled: true},
     runtimeConfig: {
         public: {
-            googleMapsKey: ''
+            googleMapsKey: '',
+            firebaseApiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY,
+            firebaseAuthDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+            firebaseProjectId: process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID,
+            firebaseRegion: process.env.NUXT_PUBLIC_FIREBASE_REGION || 'europe-west1'
         }
     },
     modules: [
