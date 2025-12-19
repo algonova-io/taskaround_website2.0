@@ -38,8 +38,8 @@
           >
             <template #item="{ item }">
               <div class="flex flex-col gap-0.5 text-left w-full">
-                <span class="text-sm font-medium truncate">{{ item.main_text }}</span>
-                <span class="text-xs text-gray-500 truncate">{{ item.secondary_text }}</span>
+                <span class="text-sm font-medium truncate">{{ item!.main_text }}</span>
+                <span class="text-xs text-gray-500 truncate">{{ item!.secondary_text }}</span>
               </div>
             </template>
           </UInputMenu>
@@ -51,21 +51,38 @@
           {{ t(Labels.newTaskFieldDateTime) }}
         </label>
         <div class="flex gap-4">
-          <UInput
-              name="date"
-              v-model="payload.date"
-              type="text"
-              placeholder="So. 19.11"
-              class="w-1/2"
-              size="xl"
-          />
-          <UInput
+
+          <div class="w-1/2">
+            <UInputDate
+                v-model="dateModel"
+                size="xl"
+                placeholder="Select date"
+                class="w-full"
+            >
+              <template #trailing>
+                <UPopover :content="{ align: 'end' }">
+                  <UButton
+                      variant="ghost"
+                      color="neutral"
+                      icon="i-heroicons-calendar"
+                      class="p-1"
+                  />
+                  <template #content>
+                    <UCalendar v-model="dateModel" class="p-2" />
+                  </template>
+                </UPopover>
+              </template>
+            </UInputDate>
+          </div>
+
+          <USelectMenu
               name="time"
               v-model="payload.time"
-              type="text"
-              placeholder="12 - 13"
+              :items="timeSlots"
+              placeholder="Select time"
               class="w-1/2"
               size="xl"
+              icon="i-heroicons-clock"
           />
         </div>
       </div>
@@ -104,6 +121,7 @@ import { Labels } from '~/models/Locale'
 import type { NewTaskStep2, NewTask } from '~/models/Tasks'
 import { usePlacesAutocomplete } from '~/composables/usePlacesAutocomplete'
 import { reactive, computed, ref, watch, onMounted } from 'vue'
+import { CalendarDate, parseDate } from '@internationalized/date'
 
 const props = defineProps<{
   val: NewTask
@@ -122,6 +140,40 @@ const payload = reactive<NewTaskStep2>({
   date: props.val.date ?? '',
   time: props.val.time ?? '',
   notes: props.val.notes ?? ''
+})
+
+/**
+ * DATE HANDLING
+ * Nuxt UI UInputDate uses a specialized CalendarDate object.
+ * We use a computed property to convert between your string (payload.date) and this object.
+ */
+const dateModel = computed({
+  get: () => {
+    if (!payload.date) return null
+    try {
+      // Convert 'YYYY-MM-DD' string to CalendarDate
+      return parseDate(payload.date)
+    } catch {
+      return null
+    }
+  },
+  set: (val) => {
+    // Convert CalendarDate back to 'YYYY-MM-DD' string
+    payload.date = val ? val.toString() : ''
+  }
+})
+
+// Generate Time Slots
+const timeSlots = computed(() => {
+  const slots = []
+  const startHour = 7
+  const endHour = 20
+
+  for (let i = startHour; i < endHour; i++) {
+    const pad = (n: number) => n.toString().padStart(2, '0')
+    slots.push(`${pad(i)}:00 - ${pad(i + 1)}:00`)
+  }
+  return slots
 })
 
 const isValid = computed(() => {
@@ -155,7 +207,7 @@ watch(searchTerm, (newQuery) => {
   }
 
   debounceTimer = setTimeout(() => {
-    search(newQuery, 'address')
+    search(newQuery)
   }, 400)
 })
 </script>
