@@ -1,5 +1,6 @@
+import type { InputMenuItem } from "@nuxt/ui";
 import { ref } from 'vue'
-import { type AutocompleteRequest, type PlaceOption, type PlacesLibrary, type PlaceType} from "~/models/google";
+import { type AutocompleteRequest, type PlacesLibrary, type PlaceType} from "~/models/google";
 
 declare var google: {
     maps: {
@@ -7,7 +8,7 @@ declare var google: {
     }
 }
 export function usePlacesAutocomplete() {
-    const suggestions = ref<PlaceOption[]>([])
+    const suggestions = ref<Partial<InputMenuItem>[]>([])
     const isLoading = ref(false)
     const error = ref<unknown>(null)
 
@@ -86,12 +87,11 @@ export function usePlacesAutocomplete() {
 
                     return {
                         id: prediction.placeId,
-                        label: fullText,
-                        description: fullText,
-                        main_text: mainText,
-                        secondary_text: secondaryText
+                        label: mainText,
+                        description: secondaryText,
+                        full_address: fullText
                     }
-                })
+                }) as Partial<InputMenuItem>[]
             }
         } catch (e) {
             suggestions.value = []

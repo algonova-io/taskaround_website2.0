@@ -96,12 +96,6 @@
               size="xl"
               trailing-icon="i-heroicons-chevron-down"
           >
-            <template #item="{ item }">
-              <div class="flex flex-col gap-0.5 text-left w-full">
-                <span class="text-sm font-medium truncate">{{ item.main_text }}</span>
-                <span class="text-xs text-gray-500 truncate">{{ item.secondary_text }}</span>
-              </div>
-            </template>
           </UInputMenu>
         </div>
       </div>

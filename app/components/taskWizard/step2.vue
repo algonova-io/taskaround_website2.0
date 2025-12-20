@@ -36,13 +36,8 @@
               size="xl"
               trailing-icon="i-heroicons-chevron-down"
           >
-            <template #item="{ item }">
-              <div class="flex flex-col gap-0.5 text-left w-full">
-                <span class="text-sm font-medium truncate">{{ item!.main_text }}</span>
-                <span class="text-xs text-gray-500 truncate">{{ item!.secondary_text }}</span>
-              </div>
-            </template>
           </UInputMenu>
+
         </div>
       </div>
 
@@ -56,7 +51,6 @@
             <UInputDate
                 v-model="dateModel"
                 size="xl"
-                placeholder="Select date"
                 class="w-full"
             >
               <template #trailing>
@@ -117,11 +111,12 @@
 </template>
 
 <script setup lang="ts">
+import { reactive, computed, ref, watch, onMounted } from 'vue'
+import { CalendarDate, parseDate } from '@internationalized/date' // Standard Nuxt UI dependency
 import { Labels } from '~/models/Locale'
 import type { NewTaskStep2, NewTask } from '~/models/Tasks'
 import { usePlacesAutocomplete } from '~/composables/usePlacesAutocomplete'
-import { reactive, computed, ref, watch, onMounted } from 'vue'
-import { CalendarDate, parseDate } from '@internationalized/date'
+import type {InputMenuItem} from "@nuxt/ui";
 
 const props = defineProps<{
   val: NewTask
@@ -135,6 +130,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 const { suggestions, isLoading, search, initPlaces } = usePlacesAutocomplete()
 
+// --- State ---
 const payload = reactive<NewTaskStep2>({
   location: props.val.location ?? '',
   date: props.val.date ?? '',
@@ -142,30 +138,17 @@ const payload = reactive<NewTaskStep2>({
   notes: props.val.notes ?? ''
 })
 
-/**
- * DATE HANDLING
- * Nuxt UI UInputDate uses a specialized CalendarDate object.
- * We use a computed property to convert between your string (payload.date) and this object.
- */
-const dateModel = computed({
-  get: () => {
-    if (!payload.date) return null
-    try {
-      // Convert 'YYYY-MM-DD' string to CalendarDate
-      return parseDate(payload.date)
-    } catch {
-      return null
-    }
-  },
-  set: (val) => {
-    // Convert CalendarDate back to 'YYYY-MM-DD' string
-    payload.date = val ? val.toString() : ''
-  }
-})
+const searchTerm = ref('')
+let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
-// Generate Time Slots
+// --- Computed Properties ---
+
+/**
+ * 1. Time Slots Generator
+ * Generates ["07:00 - 08:00", "08:00 - 09:00", ...]
+ */
 const timeSlots = computed(() => {
-  const slots = []
+  const slots: string[] = []
   const startHour = 7
   const endHour = 20
 
@@ -176,6 +159,30 @@ const timeSlots = computed(() => {
   return slots
 })
 
+/**
+ * 2. Date Model Adapter
+ * Nuxt UI InputDate uses 'CalendarDate' objects.
+ * We convert our String state ('YYYY-MM-DD') <-> CalendarDate object here.
+ */
+const dateModel = computed({
+  get: () => {
+    if (!payload.date) return null
+    try {
+      return parseDate(payload.date)
+    } catch (e) {
+      console.warn('Invalid date format:', payload.date)
+      return null
+    }
+  },
+  set: (val) => {
+    // val is a CalendarDate object (or null)
+    payload.date = val ? val.toString() : ''
+  }
+})
+
+/**
+ * 3. Form Validation
+ */
 const isValid = computed(() => {
   return (
       (payload.location?.trim().length ?? 0) > 0 &&
@@ -184,13 +191,15 @@ const isValid = computed(() => {
   )
 })
 
+// --- Methods ---
+
 function onNext() {
+  console.log(payload)
   if (!isValid.value) return
   emit('next', { ...payload })
 }
 
-const searchTerm = ref('')
-let debounceTimer: ReturnType<typeof setTimeout> | null = null
+// --- Lifecycle & Watchers ---
 
 onMounted(() => {
   initPlaces()
@@ -207,7 +216,7 @@ watch(searchTerm, (newQuery) => {
   }
 
   debounceTimer = setTimeout(() => {
-    search(newQuery)
+    search(newQuery, 'address')
   }, 400)
 })
 </script>
