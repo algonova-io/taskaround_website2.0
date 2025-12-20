@@ -159,5 +159,11 @@
   "becomeTasker.placeholder.additionalInfo": "Напр. Шукаю підробіток під час навчання...",
   "becomeTasker.step6.title": "Майже готово!",
   "becomeTasker.step6.body": "Дякуємо за заявку – ми перевіряємо кожен запит особисто. Якщо ти нам підходиш, хтось із нашої команди зв'яжеться з тобою, щоб привітати та активувати профіль.",
-  "becomeTasker.button.send": "Надіслати заявку"
+  "becomeTasker.button.send": "Надіслати заявку",
+  "form.error.required": "Обов'язкове поле",
+  "form.error.dateInvalid": "Невірна дата",
+  "form.error.phoneInvalid": "Невірний номер телефону",
+  "form.error.emailInvalid": "Невірна електронна адреса",
+  "form.error.formatInvalid": "Невірний формат",
+  "form.error.minLength": "Занадто коротко, мін. {0} символів"
 }

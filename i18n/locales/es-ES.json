@@ -159,5 +159,11 @@
   "becomeTasker.placeholder.additionalInfo": "Ej. Busco un trabajo a tiempo parcial mientras estudio...",
   "becomeTasker.step6.title": "¡Casi listo!",
   "becomeTasker.step6.body": "Gracias por tu solicitud; revisamos cada petición personalmente. Si encajas, alguien de nuestro equipo se pondrá en contacto contigo para darte la bienvenida y activar tu perfil.",
-  "becomeTasker.button.send": "Enviar solicitud"
+  "becomeTasker.button.send": "Enviar solicitud",
+  "form.error.required": "Campo obligatorio",
+  "form.error.dateInvalid": "Fecha no válida",
+  "form.error.phoneInvalid": "Número de teléfono no válido",
+  "form.error.emailInvalid": "Dirección de correo no válida",
+  "form.error.formatInvalid": "Formato no válido",
+  "form.error.minLength": "Entrada muy corta, mín. {0} caracteres"
 }

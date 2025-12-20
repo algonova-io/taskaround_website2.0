@@ -159,5 +159,11 @@
   "becomeTasker.placeholder.additionalInfo": "Напр. Ищу подработку во время учебы...",
   "becomeTasker.step6.title": "Почти готово!",
   "becomeTasker.step6.body": "Спасибо за заявку – мы проверяем каждый запрос лично. Если ты нам подходишь, кто-то из нашей команды свяжется с тобой, чтобы поприветствовать и активировать профиль.",
-  "becomeTasker.button.send": "Отправить заявку"
+  "becomeTasker.button.send": "Отправить заявку",
+  "form.error.required": "Обязательное поле",
+  "form.error.dateInvalid": "Неверная дата",
+  "form.error.phoneInvalid": "Неверный номер телефона",
+  "form.error.emailInvalid": "Неверный адрес электронной почты",
+  "form.error.formatInvalid": "Неверный формат",
+  "form.error.minLength": "Слишком коротко, мин. {0} символов"
 }

@@ -16,88 +16,90 @@
       {{ t(Labels.becomeTaskerStep2Title) }}
     </h2>
 
-    <form @submit.prevent.stop="onNext" class="flex flex-col gap-6">
+    <UForm
+        :schema="schema"
+        :state="form"
+        class="flex flex-col gap-6"
+        @submit="onSubmit"
+    >
 
       <div class="flex flex-col md:flex-row gap-6">
         <div class="w-full md:w-1/2">
-          <label for="firstName" class="block mb-2 font-semibold">
-            {{ t(Labels.becomeTaskerFieldFirstName) }}
-          </label>
-          <UInput
-              id="firstName"
-              v-model="form.firstName"
-              :placeholder="t(Labels.becomeTaskerPlaceholderFirstName)"
-              class="w-full"
-              size="xl"
-              autocomplete="off"
-          />
+          <UFormField name="firstName" :label="t(Labels.becomeTaskerFieldFirstName)" required>
+            <UInput
+                id="firstName"
+                v-model="form.firstName"
+                :placeholder="t(Labels.becomeTaskerPlaceholderFirstName)"
+                class="w-full"
+                size="xl"
+                autocomplete="given-name"
+            />
+          </UFormField>
         </div>
+
         <div class="w-full md:w-1/2">
-          <label for="lastName" class="block mb-2 font-semibold">
-            {{ t(Labels.becomeTaskerFieldLastName) }}
-          </label>
-          <UInput
-              id="lastName"
-              v-model="form.lastName"
-              :placeholder="t(Labels.becomeTaskerPlaceholderLastName)"
-              class="w-full"
-              size="xl"
-              autocomplete="off"
-          />
+          <UFormField name="lastName" :label="t(Labels.becomeTaskerFieldLastName)" required>
+            <UInput
+                id="lastName"
+                v-model="form.lastName"
+                :placeholder="t(Labels.becomeTaskerPlaceholderLastName)"
+                class="w-full"
+                size="xl"
+                autocomplete="family-name"
+            />
+          </UFormField>
         </div>
       </div>
 
       <div class="flex flex-col md:flex-row gap-6">
         <div class="w-full md:w-1/2">
-          <label for="email" class="block mb-2 font-semibold">
-            {{ t(Labels.becomeTaskerFieldEmail) }}
-          </label>
-          <UInput
-              id="email"
-              type="email"
-              v-model="form.email"
-              :placeholder="t(Labels.becomeTaskerPlaceholderEmail)"
-              class="w-full"
-              size="xl"
-              autocomplete="off"
-          />
+          <UFormField name="email" :label="t(Labels.becomeTaskerFieldEmail)" required>
+            <UInput
+                id="email"
+                type="email"
+                v-model="form.email"
+                :placeholder="t(Labels.becomeTaskerPlaceholderEmail)"
+                class="w-full"
+                size="xl"
+                autocomplete="email"
+            />
+          </UFormField>
         </div>
+
         <div class="w-full md:w-1/2">
-          <label for="phone" class="block mb-2 font-semibold">
-            {{ t(Labels.becomeTaskerFieldPhone) }}
-          </label>
-          <UInput
-              id="phone"
-              type="tel"
-              v-model="form.phone"
-              :placeholder="t(Labels.becomeTaskerPlaceholderPhone)"
-              class="w-full"
-              size="xl"
-              autocomplete="off"
-          />
+          <UFormField name="phone" :label="t(Labels.becomeTaskerFieldPhone)" required>
+            <UInput
+                id="phone"
+                type="tel"
+                v-model="form.phone"
+                :placeholder="t(Labels.becomeTaskerPlaceholderPhone)"
+                class="w-full"
+                size="xl"
+                autocomplete="tel"
+            />
+          </UFormField>
         </div>
       </div>
 
       <div>
-        <label for="city" class="block mb-2 font-semibold">
-          {{ t(Labels.becomeTaskerFieldCity) }}
-        </label>
-        <div class="relative">
-          <UInputMenu
-              id="city"
-              v-model="form.city"
-              v-model:search-term="searchTerm"
-              :items="suggestions"
-              :loading="isLoading"
-              value-key="description"
-              :placeholder="t(Labels.becomeTaskerPlaceholderCity)"
-              icon="i-heroicons-map-pin"
-              class="w-full"
-              size="xl"
-              trailing-icon="i-heroicons-chevron-down"
-          >
-          </UInputMenu>
-        </div>
+        <UFormField name="city" :label="t(Labels.becomeTaskerFieldCity)" required>
+          <div class="relative">
+            <UInputMenu
+                id="city"
+                v-model="form.city"
+                v-model:search-term="searchTerm"
+                :items="suggestions"
+                :loading="isLoading"
+                value-key="full_address"
+                :placeholder="t(Labels.becomeTaskerPlaceholderCity)"
+                icon="i-heroicons-map-pin"
+                class="w-full"
+                size="xl"
+                trailing-icon="i-heroicons-chevron-down"
+            >
+            </UInputMenu>
+          </div>
+        </UFormField>
       </div>
 
       <div class="mt-6 w-full flex justify-start">
@@ -105,20 +107,23 @@
             type="submit"
             color="blue"
             class="px-8 py-3 rounded-[18px] text-base font-medium"
-            :disabled="!isValid"
         >
           {{ t(Labels.next) }}
         </UButton>
       </div>
 
-    </form>
+    </UForm>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reactive, ref, watch, onMounted } from 'vue'
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
 import { Labels } from '~/models/Locale'
-import { reactive, computed, ref, watch, onMounted } from 'vue'
-import type {PartnerApplication, PartnerStep2} from "~/models/Tasker"
+import type { PartnerApplication, PartnerStep2 } from "~/models/Tasker"
+import { usePlacesAutocomplete, } from '~/composables/usePlacesAutocomplete'
+import {nameRegex, phoneRegex} from "~/models/validation";
 
 const props = defineProps<{ val: PartnerApplication }>()
 const emit = defineEmits<{
@@ -127,9 +132,9 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-
 const { suggestions, isLoading, search, initPlaces } = usePlacesAutocomplete()
 
+// --- State ---
 const form = reactive<PartnerStep2>({
   firstName: props.val.firstName ?? '',
   lastName: props.val.lastName ?? '',
@@ -138,26 +143,35 @@ const form = reactive<PartnerStep2>({
   city: props.val.city ?? ''
 })
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,}$/
+const searchTerm = ref('')
+let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
-const isValid = computed(() => {
-  return (
-      form.firstName.trim().length > 0 &&
-      form.lastName.trim().length > 0 &&
-      emailRegex.test(form.email) &&
-      phoneRegex.test(form.phone) &&
-      form.city.trim().length > 0
-  )
+// --- Zod Schema ---
+const schema = z.object({
+  firstName: z.string().min(1, t(Labels.formErrorRequired))
+      .min(2, t(Labels.formErrorMinLength, ['2']))
+      .regex(nameRegex, t(Labels.formErrorFormat)),
+  lastName: z.string().min(1, t(Labels.formErrorRequired ))
+      .regex(nameRegex, t(Labels.formErrorFormat))
+      .min(2, t(Labels.formErrorFormat)),
+  email: z.email(t(Labels.formErrorEmail))
+      .min(1, t(Labels.formErrorRequired )),
+
+  phone: z.string()
+      .min(1, t(Labels.formErrorRequired ))
+      .regex(phoneRegex, t(Labels.formErrorPhone ))
+      .min(7, t(Labels.formErrorPhone)),
+
+  city: z.string().min(1, t(Labels.formErrorRequired))
 })
 
-function onNext() {
-  if (!isValid.value) return
+// --- Methods ---
+
+function onSubmit(event: FormSubmitEvent<PartnerStep2>) {
   emit('next', { ...form })
 }
 
-const searchTerm = ref('')
-let debounceTimer: ReturnType<typeof setTimeout> | null = null
+// --- Lifecycle & Watchers ---
 
 onMounted(() => {
   initPlaces()
@@ -165,9 +179,7 @@ onMounted(() => {
 
 watch(searchTerm, (newQuery) => {
   if (debounceTimer) clearTimeout(debounceTimer)
-
   if (form.city && newQuery === form.city) return
-
   if (!newQuery || newQuery.length < 2) {
     suggestions.value = []
     return
@@ -177,4 +189,5 @@ watch(searchTerm, (newQuery) => {
     search(newQuery, 'city')
   }, 400)
 })
+
 </script>

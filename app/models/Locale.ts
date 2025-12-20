@@ -168,4 +168,9 @@ export enum Labels {
     becomeTaskerStep6Title = 'becomeTasker.step6.title',
     becomeTaskerStep6Body = 'becomeTasker.step6.body',
     becomeTaskerButtonSend = 'becomeTasker.button.send',
+    formErrorRequired = 'form.error.required',
+    formErrorEmail = 'form.error.emailInvalid',
+    formErrorPhone = 'form.error.phoneInvalid',
+    formErrorFormat = 'form.error.formatInvalid',
+    formErrorMinLength = "form.error.minLength",
 }

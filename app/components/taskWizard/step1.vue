@@ -2,51 +2,39 @@
   <div class="w-full">
 
     <h2 class="text-2xl font-bold mb-6">
-      {{ t(Labels.newTaskStepTitle, { city }) }}
+      {{ t(Labels.newTaskStepTitle, {city}) }}
     </h2>
 
-    <form @submit.prevent="onNext" class="flex flex-col gap-6">
+    <UForm
+        :schema="schema"
+        :state="payload"
+        class="flex flex-col gap-6"
+        @submit="onSubmit"
+    >
 
-      <div>
-        <label for="what" class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldWhich) }}
-        </label>
+      <UFormField name="what" :label="t(Labels.newTaskFieldWhich)" required>
         <UInput
-            id="what"
-            name="what"
             v-model="payload.what"
             :placeholder="t(Labels.newTaskPlaceholderWhich)"
             class="w-full"
             size="xl"
         />
-      </div>
+      </UFormField>
 
-      <div>
-        <label for="model" class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldBrand) }}
-        </label>
+      <UFormField name="brand" :label="t(Labels.newTaskFieldBrand)" required>
         <UInput
-            id="model"
-            name="model"
             v-model="payload.brand"
             :placeholder="t(Labels.newTaskPlaceholderBrand)"
             class="w-full"
             size="xl"
         />
-      </div>
+      </UFormField>
 
-      <div class="flex items-center justify-between">
-        <div>
-          <label class="font-semibold mb-2">
-            {{ t(Labels.newTaskFieldHasManual) }}
-          </label>
-        </div>
-
-        <div class="flex items-center gap-6">
+      <UFormField name="hasManual" :label="t(Labels.newTaskFieldHasManual)" required>
+        <div class="flex items-center gap-6 mt-2">
           <URadioGroup
-              name="hasManual"
-              orientation="horizontal"
               v-model="payload.hasManual"
+              orientation="horizontal"
               :items="[
                 { label: t(Labels.yes), value: 'yes' },
                 { label: t(Labels.no), value: 'no' }
@@ -55,20 +43,13 @@
               :ui="{ legend: 'sr-only' }"
           />
         </div>
-      </div>
+      </UFormField>
 
-      <div class="flex items-center justify-between">
-        <div>
-          <label class="font-semibold mb-2">
-            {{ t(Labels.newTaskFieldCondition) }}
-          </label>
-        </div>
-
-        <div class="flex items-center gap-6">
+      <UFormField name="condition" :label="t(Labels.newTaskFieldCondition)" required>
+        <div class="flex items-center gap-6 mt-2">
           <URadioGroup
-              name="condition"
-              orientation="horizontal"
               v-model="payload.condition"
+              orientation="horizontal"
               :items="[
                 { label: t(Labels.new), value: 'new' },
                 { label: t(Labels.used), value: 'used' }
@@ -77,26 +58,28 @@
               :ui="{ legend: 'sr-only' }"
           />
         </div>
-      </div>
+      </UFormField>
 
       <div class="mt-6 w-full flex justify-end">
         <UButton
             type="submit"
             color="blue"
             class="px-8 py-3 rounded-[18px] text-base font-medium"
-            :disabled="!isValid"
         >
           {{ t(Labels.next) }}
         </UButton>
       </div>
-    </form>
+
+    </UForm>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Labels } from '~/models/Locale'
-import type { NewTaskStep1, NewTask } from '~/models/Tasks'
-import { reactive, computed } from 'vue'
+import {reactive} from 'vue'
+import {z} from 'zod'
+import type {FormSubmitEvent} from '#ui/types'
+import {Labels} from '~/models/Locale'
+import type {NewTaskStep1, NewTask} from '~/models/Tasks'
 
 const emit = defineEmits<{
   (e: 'next', payload: NewTaskStep1): void
@@ -106,10 +89,11 @@ const props = defineProps<{
   val: NewTask
 }>()
 
-const { t } = useI18n()
+const {t} = useI18n()
 const route = useRoute()
 const city = (route.params.city as string | undefined) || 'Karlsruhe'
 
+// --- State ---
 const payload = reactive<NewTaskStep1>({
   what: props.val.what ?? '',
   brand: props.val.brand ?? '',
@@ -117,17 +101,17 @@ const payload = reactive<NewTaskStep1>({
   condition: props.val.condition ?? ''
 })
 
-const isValid = computed(() => {
-  return (
-      (payload.what?.trim().length ?? 0) > 0 &&
-      (payload.brand?.trim().length ?? 0) > 0 &&
-      payload.condition !== '' &&
-      payload.hasManual !== ''
-  )
+// --- Validation Schema ---
+const schema = z.object({
+  what: z.string().min(1, t(Labels.formErrorRequired)),
+  brand: z.string().min(1, t(Labels.formErrorRequired)),
+  // Radio groups must have a selection
+  hasManual: z.string().min(1, t(Labels.formErrorRequired)),
+  condition: z.string().min(1, t(Labels.formErrorRequired))
 })
 
-function onNext() {
-  if (!isValid.value) return
-  emit('next', { ...payload })
+// --- Submit Handler ---
+function onSubmit(event: FormSubmitEvent<NewTaskStep1>) {
+  emit('next', {...payload})
 }
 </script>

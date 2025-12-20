@@ -159,5 +159,10 @@
   "becomeTasker.placeholder.additionalInfo": "E.g. I am looking for a part-time job alongside my studies...",
   "becomeTasker.step6.title": "Almost done!",
   "becomeTasker.step6.body": "Thank you for your application – we review every request personally. If you are a good fit, someone from our team will contact you to welcome you and unlock your profile.",
-  "becomeTasker.button.send": "Send Application"
-}
+  "becomeTasker.button.send": "Send Application",
+  "form.error.required": "Required field",
+  "form.error.dateInvalid": "Invalid date",
+  "form.error.phoneInvalid": "Invalid phone number",
+  "form.error.emailInvalid": "Invalid email address",
+  "form.error.formatInvalid": "Invalid format",
+  "form.error.minLength": "Input too short, min {0} characters"}

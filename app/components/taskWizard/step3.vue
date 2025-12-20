@@ -16,12 +16,14 @@
       {{ t(Labels.newTaskStep3Title) }}
     </h2>
 
-    <form @submit.prevent="onNext" class="flex flex-col gap-6">
+    <UForm
+        :schema="schema"
+        :state="payload"
+        class="flex flex-col gap-6"
+        @submit="onSubmit"
+    >
 
-      <div>
-        <label for="name" class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldName) }}
-        </label>
+      <UFormField name="name" :label="t(Labels.newTaskFieldName)" required>
         <UInput
             id="name"
             v-model="payload.name"
@@ -30,38 +32,36 @@
             size="xl"
             autocomplete="name"
         />
-      </div>
+      </UFormField>
 
       <div class="flex flex-col md:flex-row gap-6">
+
         <div class="w-full md:w-1/2">
-          <label for="email" class="block mb-2 font-semibold">
-            {{ t(Labels.newTaskFieldEmail) }}
-          </label>
-          <UInput
-              id="email"
-              type="email"
-              v-model="payload.email"
-              :placeholder="t(Labels.newTaskPlaceholderEmail)"
-              class="w-full"
-              size="xl"
-              autocomplete="email"
-          />
+          <UFormField name="email" :label="t(Labels.newTaskFieldEmail)" required>
+            <UInput
+                id="email"
+                type="email"
+                v-model="payload.email"
+                :placeholder="t(Labels.newTaskPlaceholderEmail)"
+                class="w-full"
+                size="xl"
+                autocomplete="email"
+            />
+          </UFormField>
         </div>
 
         <div class="w-full md:w-1/2">
-          <label for="phone" class="block mb-2 font-semibold">
-            {{ t(Labels.newTaskFieldPhone) }}
-          </label>
-          <UInput
-              id="phone"
-              type="tel"
-              name="phone"
-              v-model="payload.phone"
-              :placeholder="t(Labels.newTaskPlaceholderPhone)"
-              class="w-full"
-              size="xl"
-              autocomplete="tel"
-          />
+          <UFormField name="phone" :label="t(Labels.newTaskFieldPhone)" required>
+            <UInput
+                id="phone"
+                type="tel"
+                v-model="payload.phone"
+                :placeholder="t(Labels.newTaskPlaceholderPhone)"
+                class="w-full"
+                size="xl"
+                autocomplete="tel"
+            />
+          </UFormField>
         </div>
       </div>
 
@@ -70,20 +70,22 @@
             type="submit"
             color="blue"
             class="px-8 py-3 rounded-[18px] text-base font-medium"
-            :disabled="!isValid"
         >
           {{ t(Labels.next) }}
         </UButton>
       </div>
 
-    </form>
+    </UForm>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reactive } from 'vue'
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
 import { Labels } from '~/models/Locale'
-import { reactive, computed } from 'vue'
 import type { NewTaskStep3, NewTask } from '~/models/Tasks'
+import {nameRegex, phoneRegex} from "~/models/validation";
 
 const props = defineProps<{
   val: NewTask
@@ -95,24 +97,30 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// --- State ---
 const payload = reactive<NewTaskStep3>({
   name: props.val.name ?? '',
   email: props.val.email ?? '',
   phone: props.val.phone ?? ''
 })
 
-const isValid = computed(() => {
-  const isNameValid = (payload.name?.trim().length ?? 0) > 0
-  const isEmailValid = emailRegex.test(payload.email)
-  const isPhoneValid = (payload.phone?.trim().length ?? 0) > 0
+// --- Zod Schema ---
+const schema = z.object({
+  name: z.string().min(1, t(Labels.formErrorRequired))
+      .regex(nameRegex, t(Labels.formErrorFormat))
+      .min(2, t(Labels.formErrorFormat)),
+  email: z.email(t(Labels.formErrorEmail))
+      .min(1, t(Labels.formErrorRequired)),
 
-  return isNameValid && isEmailValid && isPhoneValid
+  phone: z.string()
+      .min(1, t(Labels.formErrorRequired ))
+      .regex(phoneRegex, t(Labels.formErrorPhone ))
+      .min(7, t(Labels.formErrorPhone ))
 })
 
-function onNext() {
-  if (!isValid.value) return
+// --- Submit Handler ---
+function onSubmit(event: FormSubmitEvent<NewTaskStep3>) {
   emit('next', { ...payload })
 }
 </script>

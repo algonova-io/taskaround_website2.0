@@ -38,13 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import { Labels } from '~/models/Locale'
+import {Labels} from '~/models/Locale'
 
-// No props needed for this step as it's just info/submission
-const emit = defineEmits<{
+defineEmits<{
   (e: 'sendApplication'): void
   (e: 'back'): void
 }>()
 
-const { t } = useI18n()
+const {t} = useI18n()
 </script>

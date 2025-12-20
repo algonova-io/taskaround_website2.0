@@ -16,20 +16,22 @@
       {{ t(Labels.newTaskStep2Title) }}
     </h2>
 
-    <form @submit.prevent="onNext" class="flex flex-col gap-6">
+    <UForm
+        :schema="schema"
+        :state="payload"
+        class="flex flex-col gap-6"
+        @submit="onSubmit"
+    >
 
-      <div>
-        <label for="location" class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldLocation) }}
-        </label>
-        <div class="relative">
+      <UFormField name="location" :label="t(Labels.newTaskFieldLocation)" required>
+        <div class="relative w-full">
           <UInputMenu
               id="location"
               v-model="payload.location"
               v-model:search-term="searchTerm"
               :items="suggestions"
               :loading="isLoading"
-              value-key="description"
+              value-key="full_address"
               :placeholder="t(Labels.newTaskPlaceholderLocation)"
               icon="i-heroicons-map-pin"
               class="w-full"
@@ -37,64 +39,71 @@
               trailing-icon="i-heroicons-chevron-down"
           >
           </UInputMenu>
-
         </div>
-      </div>
+      </UFormField>
 
       <div>
-        <label class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldDateTime) }}
+        <label class="block mb-2 font-semibold text-sm">
+          {{ t(Labels.newTaskFieldDateTime) }} <span class="text-red-500">*</span>
         </label>
-        <div class="flex gap-4">
+
+        <div class="flex gap-4 items-start">
 
           <div class="w-1/2">
-            <UInputDate
-                v-model="dateModel"
-                size="xl"
-                class="w-full"
-            >
-              <template #trailing>
-                <UPopover :content="{ align: 'end' }">
-                  <UButton
-                      variant="ghost"
-                      color="neutral"
-                      icon="i-heroicons-calendar"
-                      class="p-1"
-                  />
-                  <template #content>
-                    <UCalendar v-model="dateModel" class="p-2" />
-                  </template>
-                </UPopover>
-              </template>
-            </UInputDate>
+            <UFormField name="date">
+              <UInputDate
+                  v-model="dateModel"
+                  size="xl"
+                  class="w-full"
+                  :min-value="minDate"
+                  icon="i-heroicons-calendar"
+              >
+                <template #trailing>
+                  <UPopover :content="{ align: 'end' }">
+                    <UButton
+                        variant="ghost"
+                        color="neutral"
+                        icon="i-heroicons-calendar"
+                        class="p-1"
+                    />
+                    <template #content>
+                      <UCalendar
+                          v-model="dateModel"
+                          class="p-2"
+                          :min-value="minDate"
+                      />
+                    </template>
+                  </UPopover>
+                </template>
+              </UInputDate>
+            </UFormField>
           </div>
 
-          <USelectMenu
-              name="time"
-              v-model="payload.time"
-              :items="timeSlots"
-              placeholder="Select time"
-              class="w-1/2"
-              size="xl"
-              icon="i-heroicons-clock"
-          />
+          <div class="w-1/2">
+            <UFormField name="time">
+              <USelectMenu
+                  v-model="payload.time"
+                  :items="timeSlots"
+                  placeholder="Select time"
+                  class="w-full"
+                  size="xl"
+                  icon="i-heroicons-clock"
+              />
+            </UFormField>
+          </div>
+
         </div>
       </div>
 
-      <div>
-        <label for="notes" class="block mb-2 font-semibold">
-          {{ t(Labels.newTaskFieldNotes) }}
-        </label>
+      <UFormField name="notes" :label="t(Labels.newTaskFieldNotes)">
         <UTextarea
-            id="notes"
-            name="notes"
             v-model="payload.notes"
             :placeholder="t(Labels.newTaskPlaceholderNotes)"
             :rows="4"
             class="w-full"
             size="xl"
         />
-      </div>
+      </UFormField>
 
       <div class="mt-6 w-full flex justify-start">
         <UButton
@@ -106,22 +115,20 @@
         </UButton>
       </div>
 
-    </form>
+    </UForm>
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, computed, ref, watch, onMounted } from 'vue'
-import { CalendarDate, parseDate } from '@internationalized/date' // Standard Nuxt UI dependency
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
+import { CalendarDate, parseDate, today, getLocalTimeZone } from '@internationalized/date'
 import { Labels } from '~/models/Locale'
 import type { NewTaskStep2, NewTask } from '~/models/Tasks'
-import { usePlacesAutocomplete } from '~/composables/usePlacesAutocomplete'
-import type {InputMenuItem} from "@nuxt/ui";
+import { usePlacesAutocomplete, } from '~/composables/usePlacesAutocomplete'
 
-const props = defineProps<{
-  val: NewTask
-}>()
-
+const props = defineProps<{ val: NewTask }>()
 const emit = defineEmits<{
   (e: 'next', payload: Partial<NewTaskStep2>): void
   (e: 'back'): void
@@ -141,61 +148,52 @@ const payload = reactive<NewTaskStep2>({
 const searchTerm = ref('')
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
+// --- Zod Schema Validation ---
+const schema = z.object({
+  location: z.string().min(1, t(Labels.formErrorRequired)),
+  date: z.string().min(1, t(Labels.formErrorRequired )),
+  time: z.string().min(1, t(Labels.formErrorRequired )),
+  notes: z.string().optional()
+})
+
 // --- Computed Properties ---
 
-/**
- * 1. Time Slots Generator
- * Generates ["07:00 - 08:00", "08:00 - 09:00", ...]
- */
+const minDate = computed(() => {
+  return today(getLocalTimeZone()).add({ days: 1 })
+})
+
 const timeSlots = computed(() => {
   const slots: string[] = []
-  const startHour = 7
-  const endHour = 20
-
-  for (let i = startHour; i < endHour; i++) {
+  for (let i = 7; i < 20; i++) {
     const pad = (n: number) => n.toString().padStart(2, '0')
     slots.push(`${pad(i)}:00 - ${pad(i + 1)}:00`)
   }
   return slots
 })
 
-/**
- * 2. Date Model Adapter
- * Nuxt UI InputDate uses 'CalendarDate' objects.
- * We convert our String state ('YYYY-MM-DD') <-> CalendarDate object here.
- */
 const dateModel = computed({
   get: () => {
-    if (!payload.date) return null
+    if (!payload.date) return undefined
     try {
       return parseDate(payload.date)
-    } catch (e) {
-      console.warn('Invalid date format:', payload.date)
-      return null
+    } catch {
+      return undefined
     }
   },
   set: (val) => {
-    // val is a CalendarDate object (or null)
-    payload.date = val ? val.toString() : ''
+    if (!val) {
+      payload.date = ''
+      return
+    }
+    if (val.compare(minDate.value) < 0) {
+    } else {
+      payload.date = val.toString()
+    }
   }
 })
 
-/**
- * 3. Form Validation
- */
-const isValid = computed(() => {
-  return (
-      (payload.location?.trim().length ?? 0) > 0 &&
-      (payload.date?.trim().length ?? 0) > 0 &&
-      (payload.time?.trim().length ?? 0) > 0
-  )
-})
-
 // --- Methods ---
-
-function onNext() {
-  console.log(payload)
-  if (!isValid.value) return
+function onSubmit(event: FormSubmitEvent<any>) {
   emit('next', { ...payload })
 }
 
@@ -207,14 +205,11 @@ onMounted(() => {
 
 watch(searchTerm, (newQuery) => {
   if (debounceTimer) clearTimeout(debounceTimer)
-
   if (payload.location && newQuery === payload.location) return
-
   if (!newQuery || newQuery.length < 2) {
     suggestions.value = []
     return
   }
-
   debounceTimer = setTimeout(() => {
     search(newQuery, 'address')
   }, 400)

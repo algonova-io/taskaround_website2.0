@@ -159,5 +159,12 @@
   "becomeTasker.placeholder.additionalInfo": "Z.B. Ich suche einen Nebenjob neben dem Studium...",
   "becomeTasker.step6.title": "Fast geschafft!",
   "becomeTasker.step6.body": "Danke für deine Bewerbung – wir prüfen jede Anfrage persönlich. Wenn du passt, meldet sich jemand aus unserem Team bei dir, um dich willkommen zu heißen und dein Profil freizuschalten.",
-  "becomeTasker.button.send": "Bewerbung senden"
+  "becomeTasker.button.send": "Bewerbung senden",
+  "form.error.required": "Pflichtfeld",
+  "form.error.dateInvalid": "Ungültiges Datum",
+  "form.error.phoneInvalid": "Ungültige Telefonnummer",
+  "form.error.emailInvalid": "Ungültige E-Mail-Adresse",
+  "form.error.formatInvalid": "Ungültiges Format",
+  "form.error.minLength": "Eingabe zu kurz, mind. {0} Zeichen"
+
 }
