@@ -1,75 +1,110 @@
-# Nuxt Minimal Starter
+# TaskAround Website 2.0
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+TaskAround is a modern web application built with Nuxt 4, designed to connect users with service providers (Taskers). The platform features a step-by-step wizard for both creating tasks and becoming a tasker, multi-language support, and integration with Firebase and Google Maps.
 
-## Setup
+## 🛠 Tech Stack
 
-Make sure to install dependencies:
+- **Framework**: [Nuxt 4](https://nuxt.com/) (Vue 3, TypeScript)
+- **UI & Styling**: [Nuxt UI](https://ui.nuxt.com/) & [Tailwind CSS](https://tailwindcss.com/)
+- **Database**: [Better-SQLite3](https://github.com/WiseLibs/better-sqlite3)
+- **Backend Services**: [Firebase](https://firebase.google.com/) (Authentication & Realtime Database/Firestore)
+- **Internationalization**: [@nuxtjs/i18n](https://i18n.nuxtjs.org/)
+- **Other Tools**: [Nuxt Content](https://content.nuxt.com/), [Nuxt Image](https://image.nuxt.com/), [Zod](https://zod.dev/) for validation.
 
-```bash
-# npm
-npm install
+## 📁 Project Structure
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+```text
+├── app/                  # Main application source code
+│   ├── assets/           # Global styles and assets
+│   ├── components/       # Vue components (Wizards, Profiles, Layout)
+│   ├── composables/      # Shared logic and state
+│   ├── layouts/          # Page layouts (Default, Landing)
+│   ├── middleware/       # Navigation guards (City detection)
+│   ├── models/           # TypeScript interfaces and Zod schemas
+│   ├── pages/            # Application routes (Dynamic city/category routing)
+│   ├── plugins/          # Nuxt plugins (Firebase initialization)
+│   └── utils/            # Helper functions
+├── i18n/                 # Localization files (JSON)
+├── public/               # Static assets (images, fonts, robots.txt)
+├── shared/               # Code shared between client and server (TODO)
+├── nuxt.config.ts        # Nuxt configuration
+├── package.json          # Project dependencies and scripts
+└── .env                  # Environment variables (not in version control)
 ```
 
-## Development Server
+## 🚀 Getting Started
 
-Start the development server on `http://localhost:3000`:
+### Requirements
 
+- [Node.js](https://nodejs.org/) (Latest LTS recommended)
+- [npm](https://www.npmjs.com/) (Package manager)
+
+### Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd taskaround_website_2.0
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   NUXT_PUBLIC_GOOGLE_MAPS_KEY=your-google-maps-api-key
+   NUXT_PUBLIC_FIREBASE_API_KEY=your-firebase-api-key
+   NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-firebase-auth-domain
+   NUXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+   NUXT_PUBLIC_FIREBASE_REGION=your-firebase-region
+   ```
+
+### Development
+
+Start the development server:
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+The app will be available at `http://localhost:3000`.
 
-## Production
+### Production
 
 Build the application for production:
-
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
-
+Locally preview the production build:
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📜 Scripts
+
+- `npm run dev`: Start development server.
+- `npm run build`: Build production-ready application.
+- `npm run generate`: Static site generation (SSG).
+- `npm run preview`: Preview the production build locally.
+- `npm run postinstall`: Run Nuxt preparation (auto-generation of types).
+
+## 🧪 Testing
+
+- **TODO**: Automated tests are not yet implemented. `@nuxt/test-utils` is included in the project for future use.
+
+## 🌍 Localization
+
+The project uses `@nuxtjs/i18n` for multi-language support. Translations are located in `i18n/locales/`.
+Supported languages:
+- German (de) - Default
+- English (en)
+- Spanish (es)
+- Italian (it)
+- Russian (ru)
+- Ukrainian (uk)
+
+## 📄 License
+
+This project is private and not licensed for public use.
